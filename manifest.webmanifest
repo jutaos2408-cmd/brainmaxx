@@ -1,8 +1,8 @@
 {
-  "name": "Brainmaxx",
-  "short_name": "Brainmaxx",
+  "name": "Lifemaxx",
+  "short_name": "Lifemaxx",
   "lang": "de",
-  "description": "Tagebuch und Training fürs Gehirn",
+  "description": "Dein Life Score: Lernen, Sport, Schlaf, Digital und Alltag",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

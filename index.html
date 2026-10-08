@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Brainmaxx</title>
+<title>Lifemaxx</title>
 <meta name="theme-color" content="#0B0C0E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Brainmaxx">
+<meta name="apple-mobile-web-app-title" content="Lifemaxx">
 <meta name="format-detection" content="telephone=no">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
@@ -638,6 +638,86 @@ details.more ul{padding-left:18px;line-height:1.55}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .pbs{display:flex;flex-direction:column}
 
+
+/* Heute: Ringe, Check-ins, Als Nächstes */
+.rings{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-top:4px}
+.rg{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;border-radius:10px}
+.rg:active{background:var(--panel)}
+.rg svg{display:block}
+.rg b{position:absolute;top:6px;height:56px;display:grid;place-items:center;font-family:var(--f-dot);font-weight:900;font-size:19px;line-height:1}
+.rg span{font-size:11.5px;color:var(--dim)}
+.cis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ci{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;border:1px solid var(--line2);border-radius:10px;padding:11px 12px;background:var(--bg)}
+.ci span{grid-row:1/3;font-size:20px;color:var(--acc)}
+.ci b{font-weight:600;font-size:13.5px}
+.ci small{font-family:var(--f-mono);font-size:10.5px;color:var(--faint)}
+.ci.done{border-color:rgba(159,203,170,.45)}
+.ci.done span,.ci.done small{color:var(--good)}
+.next{border-left:2px solid var(--acc);background:var(--panel);border-radius:0 10px 10px 0;padding:12px 14px;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.next p{margin:0;font-size:14.5px;line-height:1.45}
+.next b{color:var(--acc);font-weight:600}
+.next .btn{height:36px}
+/* Sheets */
+.shh{display:grid;grid-template-columns:auto minmax(0,1fr) auto 32px;align-items:center;gap:10px;position:sticky;top:-20px;background:var(--panel);padding:4px 0 8px;z-index:2}
+.shh .cd{width:9px;height:9px;border-radius:50%}
+.shh b{font-size:18px;font-weight:600}
+.shs{font-family:var(--f-dot);font-weight:900;font-size:26px;line-height:1}
+.shh .x{font-size:24px;width:32px;height:32px}
+.shb{display:flex;flex-direction:column;gap:12px}
+.cidots{display:flex;gap:4px}
+.cidots i{flex:1;height:3px;border-radius:2px;background:var(--line2)}
+.cidots i.on{background:var(--acc)}
+.cit{margin:6px 0 0;font-size:21px;font-weight:600;letter-spacing:-.01em}
+.cinav{justify-content:flex-end;margin-top:6px}
+.cinav .btn.big{min-width:140px}
+.feel button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;height:52px}
+.feel button b{font-family:var(--f-dot);font-weight:900;font-size:18px}
+.feel button small{font-size:10px;opacity:.75}
+.bedby{height:40px;display:flex;align-items:center;font-family:var(--f-dot);font-weight:900;font-size:24px;color:var(--acc)}
+.tog.sm{height:32px;padding:0 12px;font-size:12.5px}
+/* Klappbereiche */
+.fold{border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.fold summary{font-family:var(--f-ui);letter-spacing:0;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center;padding:13px 14px;cursor:pointer;font-weight:600;font-size:14.5px}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary i{font-style:normal;color:var(--faint);transition:transform .2s;font-family:var(--f-mono)}
+.fold[open] summary i{transform:rotate(90deg)}
+.foldin{padding:0 14px 14px;display:flex;flex-direction:column;gap:12px}
+.shb .fold,.foldin .fold{background:var(--bg)}
+/* Spiele-Liste */
+.glist{display:flex;flex-direction:column}
+.gi2{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);text-align:left}
+.gi2 .gn{display:flex;flex-direction:column;gap:2px;min-width:0}
+.gi2 .gn b{font-weight:500;font-size:14px}
+.gi2 .gn small{font-family:var(--f-mono);font-size:10px;color:var(--faint);letter-spacing:.04em}
+.gi2 .gv{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none}
+.gi2 .gv b{font-family:var(--f-dot);font-weight:900;font-size:18px}
+.gi2 .gv small{font-family:var(--f-mono);font-size:10px;color:var(--faint)}
+.gi2.done .gn b{color:var(--good)}
+.wrow{grid-template-columns:86px minmax(0,1fr) auto!important}
+.wrow .wx{font-family:var(--f-mono);font-size:11px;color:var(--faint)}
+.wrow.done .wx{color:var(--good)}
+/* Verlauf */
+.wk{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px;align-items:center}
+.wka{display:flex;flex-direction:column;gap:2px}
+.wka b{font-family:var(--f-dot);font-weight:900;font-size:58px;line-height:.95}
+.wka small{font-size:11.5px;color:var(--faint)}
+.wka i,.wkr i{font-style:normal;font-family:var(--f-mono);font-size:11px}
+.up{color:var(--good)}.dn{color:var(--bad)}
+.wkc{display:flex;flex-direction:column;gap:7px}
+.wkr{display:grid;grid-template-columns:8px minmax(0,1fr) 28px 40px;gap:8px;align-items:center;font-size:13px}
+.wkr .cd{width:7px;height:7px;border-radius:50%}
+.wkr b{font-family:var(--f-mono);font-weight:500;text-align:right}
+.ins{border-left:2px solid var(--good);padding:8px 12px;font-size:14px;line-height:1.5;background:var(--panel);border-radius:0 8px 8px 0}
+.ins b{color:var(--good);font-weight:600}
+.jr{display:flex;flex-direction:column;gap:3px;padding:8px 0;border-bottom:1px solid var(--line)}
+.jr p{margin:0;font-size:14px;line-height:1.45}
+.jr small{font-size:12px;color:var(--dim)}
+.fttime.brk{color:var(--good)}
+.streaks{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:420px){.streaks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stk{padding:10px}
+.stk b{font-size:30px}
+
 /* Profil */
 .lvbox{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:12px;padding:16px}
 .lvbig{font-family:var(--f-dot);font-weight:900;font-size:76px;line-height:.9}
@@ -660,7 +740,7 @@ details.more ul{padding-left:18px;line-height:1.55}
 
 <div class="app">
   <header class="top">
-    <div class="brand">BRAIN<b>MAXX</b></div>
+    <div class="brand">LIFE<b>MAXX</b></div>
     <div class="chips2"><button class="chipx" id="ftChip" data-tab="focus" hidden></button><button class="chipx" id="lvChip" data-tab="prof">LVL 1</button></div>
   </header>
   <main>
@@ -727,7 +807,7 @@ const LS='lifemaxx-v2',LSS='lifemaxx-settings-v2';
 const DEF_S=()=>({goals:{study:60,studyWeek:300,sleep:480,steps:10000,sport:45,screen:180},
   morning:['Ohne Snooze aufstehen','Glas Wasser','Bett machen','Frühstück','Tag planen'],
   evening:['Tasche für morgen packen','Handy ab 22 Uhr weg','10 Minuten lesen','Top 3 für morgen notieren'],
-  detox:null,detoxDone:[],diff:'adaptive',adapt:{},ach:[],keepAwake:true,updated:0});
+  detox:null,detoxDone:[],diff:'adaptive',adapt:{},ach:[],keepAwake:true,wakeTarget:'06:45',updated:0});
 let S=DEF_S();
 function sNorm(o){const s=DEF_S();if(!o||typeof o!=='object')return s;
   if(o.goals)Object.keys(s.goals).forEach(k=>{const v=N(o.goals[k]);if(v!=null&&v>=0)s.goals[k]=v});
@@ -737,13 +817,13 @@ function sNorm(o){const s=DEF_S();if(!o||typeof o!=='object')return s;
   if(['easy','normal','hard','adaptive'].includes(o.diff))s.diff=o.diff;
   if(o.adapt&&typeof o.adapt==='object')s.adapt=o.adapt;
   if(Array.isArray(o.ach))s.ach=o.ach.slice(0,200);
-  if(typeof o.keepAwake==='boolean')s.keepAwake=o.keepAwake;
+  if(typeof o.keepAwake==='boolean')s.keepAwake=o.keepAwake;if(tmin(o.wakeTarget)!=null)s.wakeTarget=o.wakeTarget;
   s.updated=+o.updated||0;return s}
 function sSave(){S.updated=Date.now();try{localStorage.setItem(LSS,JSON.stringify(S))}catch(e){}invalidate()}
 
 /* ================= Tagesdaten ================= */
 let days={};let cur=today();
-function blank(){return{brain:{study:0,tasks:0,read:0,anki:0},focus:[],sport:{steps:null,rest:false},acts:[],
+function blank(){return{brain:{study:0,tasks:0,read:0,anki:0},focus:[],sport:{steps:null,rest:false,water:null},acts:[],feel:{mood:null,energy:null,day:null},journal:{line:'',grat:''},checkin:{am:false,pm:false},
   sleep:{bed:'',wake:'',min:null,score:null,rhr:null,bb:null,stress:null,src:''},
   digital:{screen:null,social:null,shorts:null,pickups:null,fmode:null,first:null,last:null},
   life:{goal:'',tasks:[],morning:{},evening:{},tidy:null,punctual:null,useful:0},
@@ -757,7 +837,10 @@ function fromV1(o){const d=blank();d.acts=normActs(o.acts);d.games=normGames(o.g
 function norm(o){if(!o||typeof o!=='object')return blank();if(!o.brain&&(o.chips||o.scales||o.metrics))return fromV1(o);
   const d=blank();const b=o.brain||{};['study','tasks','read','anki'].forEach(k=>{const v=N(b[k]);if(v!=null&&v>=0)d.brain[k]=Math.round(v)});
   if(Array.isArray(o.focus))d.focus=o.focus.filter(x=>x&&N(x.min)!=null).slice(0,50).map(x=>({t:['lernen','deep','lesen'].includes(x.t)?x.t:'deep',min:Math.round(x.min),pf:!!x.pf,int:+x.int||0,at:+x.at||0}));
-  const sp=o.sport||{};d.sport.steps=N(sp.steps);d.sport.rest=!!sp.rest;d.acts=normActs(o.acts);
+  const sp=o.sport||{};d.sport.steps=N(sp.steps);d.sport.rest=!!sp.rest;d.sport.water=N(sp.water);
+  const fe=o.feel||{};['mood','energy','day'].forEach(k=>{const v=N(fe[k]);d.feel[k]=v!=null&&v>=1&&v<=5?v:null});
+  const jo=o.journal||{};d.journal.line=Str(jo.line,280);d.journal.grat=Str(jo.grat,200);
+  const ci=o.checkin||{};d.checkin.am=!!ci.am;d.checkin.pm=!!ci.pm;d.acts=normActs(o.acts);
   const sl=o.sleep||{};d.sleep.bed=tmin(sl.bed)!=null?sl.bed:'';d.sleep.wake=tmin(sl.wake)!=null?sl.wake:'';['min','score','rhr','bb','stress'].forEach(k=>d.sleep[k]=N(sl[k]));d.sleep.src=Str(sl.src,30);
   const dg=o.digital||{};['screen','social','shorts','pickups','fmode'].forEach(k=>d.digital[k]=N(dg[k]));d.digital.first=B(dg.first);d.digital.last=B(dg.last);
   const L=o.life||{};d.life.goal=Str(L.goal,120);
@@ -778,11 +861,32 @@ function loadAll(){
   try{const s=localStorage.getItem(LSS);if(s)S=sNorm(JSON.parse(s));else{const o=JSON.parse(localStorage.getItem('brainmaxx-settings-v1')||'null');if(o){S.diff=sNorm(o).diff;S.adapt=sNorm(o).adapt}}}catch(e){}
 }
 const hasAny=d=>d&&d!==EMPTY&&CATS.some(c=>catOf(c.id,d,null).has);
+function bedBy(){const w=tmin(S.wakeTarget);return w==null?null:((w-S.goals.sleep-15)%1440+1440)%1440}
+
+/* ================= Insights & Rückblick ================= */
+function insights(){const ks=Object.keys(days).filter(k=>scores(k).n>=2);if(ks.length<7)return{few:true,n:ks.length};const out=[];
+  const cmp=(grp,val,thr,text)=>{const A=[],Bv=[];ks.forEach(k=>{const d=get(k);const g=grp(d,k);if(g==null)return;const v=val(d,k);if(v==null)return;(g?A:Bv).push(v)});
+    if(A.length<3||Bv.length<3)return;const a=avg(A),b=avg(Bv);if(Math.abs(a-b)<thr)return;out.push({w:Math.abs(a-b)/thr,t:text(a,b)})};
+  const enough=d=>{const x=sleepDur(d);return x==null?null:x>=S.goals.sleep-15};
+  const r1=v=>Math.round(v),r10=v=>(Math.round(v*10)/10).toString().replace('.',',');
+  cmp(enough,(d,k)=>scores(k).total,4,(a,b)=>`Nach genug Schlaf ist dein Life Score im Schnitt <b>${r1(Math.abs(a-b))} Punkte ${a>b?'höher':'niedriger'}</b> (${r1(a)} statt ${r1(b)}).`);
+  cmp(enough,d=>d.feel.energy,.4,(a,b)=>`Nach genug Schlaf liegt deine Energie bei <b>${r10(a)}</b> statt ${r10(b)} von 5.`);
+  cmp(d=>d.acts.length>0,d=>d.feel.day,.4,(a,b)=>`An Sport-Tagen bewertest du den Tag mit <b>${r10(a)}</b> statt ${r10(b)} von 5.`);
+  cmp(d=>d.acts.length>0,d=>d.brain.study||null,10,(a,b)=>`An Sport-Tagen lernst du im Schnitt <b>${r1(Math.abs(a-b))} Min ${a>b?'mehr':'weniger'}</b>.`);
+  cmp(d=>d.digital.shorts==null?null:d.digital.shorts>30,d=>d.brain.study,10,(a,b)=>`An Tagen mit über 30 Min Short-Videos lernst du <b>${r1(Math.abs(a-b))} Min ${a>b?'mehr':'weniger'}</b>.`);
+  cmp(d=>d.digital.first,(d,k)=>scores(k).total,4,(a,b)=>`Wenn die erste Stunde handyfrei ist, liegt dein Score bei <b>${r1(a)}</b> statt ${r1(b)}.`);
+  cmp(d=>d.focus.length>0,d=>{const r=taskRate(d);return r==null?null:r*100},8,(a,b)=>`An Tagen mit Fokus-Session erledigst du <b>${r1(a)} %</b> deiner Aufgaben statt ${r1(b)} %.`);
+  cmp(d=>{const b=tmin(d.sleep.bed);return b==null?null:bedN(b)<=660},d=>d.feel.energy,.4,(a,b)=>`Wenn du vor 23 Uhr im Bett warst, hast du morgens <b>${r10(a)}</b> statt ${r10(b)} Energie.`);
+  cmp(d=>d.digital.screen==null?null:d.digital.screen>S.goals.screen,d=>d.feel.day,.4,(a,b)=>`An Tagen über deinem Bildschirm-Limit bewertest du den Tag mit <b>${r10(a)}</b> statt ${r10(b)}.`);
+  out.sort((x,y)=>y.w-x.w);return{list:out.slice(0,4),n:ks.length}}
+function weekCompare(){const t=today();const ws=weekStartKey(t);const thisK=weekDays(ws);const lastK=[...Array(7)].map((_,i)=>addDays(ws,i-7));
+  const agg=ks=>{const r={total:[],cats:{}};CATS.forEach(c=>r.cats[c.id]=[]);ks.forEach(k=>{const s=scores(k);if(s.total!=null)r.total.push(s.total);CATS.forEach(c=>{if(s.c[c.id].has)r.cats[c.id].push(s.c[c.id].score)})});return r};
+  return{a:agg(thisK),b:agg(lastK),days:thisK}}
 
 /* ================= Scores ================= */
 let SC=new Map(),XPC=null;
 function invalidate(){SC.clear();XPC=null}
-const CATS=[{id:'brain',name:'Gehirn',w:.22,col:'#B9A3FF'},{id:'sport',name:'Sport',w:.2,col:'#9FCBAA'},{id:'sleep',name:'Schlaf',w:.22,col:'#7FA8FF'},{id:'digital',name:'Digital',w:.16,col:'#EA826F'},{id:'life',name:'Alltag',w:.2,col:'#F0A73C'}];
+const CATS=[{id:'brain',name:'Lernen',w:.22,col:'#B9A3FF'},{id:'sport',name:'Sport',w:.2,col:'#9FCBAA'},{id:'sleep',name:'Schlaf',w:.22,col:'#7FA8FF'},{id:'digital',name:'Digital',w:.16,col:'#EA826F'},{id:'life',name:'Alltag',w:.2,col:'#F0A73C'}];
 function sleepDur(d){const b=tmin(d.sleep.bed),w=tmin(d.sleep.wake);if(b!=null&&w!=null){const x=(w-b+1440)%1440;if(x>=60)return x}return d.sleep.min}
 function sd(a){const m=avg(a);return Math.sqrt(avg(a.map(x=>(x-m)**2)))}
 function consistency(k){const b=[],w=[];for(let i=0;i<7;i++){const d=get(addDays(k,-i));const bt=tmin(d.sleep.bed),wt=tmin(d.sleep.wake);if(bt!=null)b.push(bedN(bt));if(wt!=null)w.push(wt)}
@@ -800,9 +904,9 @@ function brainCat(d){const b=d.brain,g=S.goals;const deep=deepScore(d);const gp=
   const has=b.study>0||b.tasks>0||b.read>0||b.anki>0||d.focus.length>0||Object.keys(d.games).length>0;
   const s=45*Math.min(1,b.study/Math.max(1,g.study))+15*Math.min(1,b.read/20)+10*Math.min(1,b.tasks/10)+10*Math.min(1,b.anki/50)+20*deep/100+10*Math.min(1,gp/6);
   return{has,score:Math.round(Math.min(100,s)),deep}}
-function sportCat(d){const g=S.goals;const st=d.sport.steps;const has=st!=null||d.acts.length>0||d.sport.rest;
-  const sr=st?Math.min(1,st/Math.max(1,g.steps)):0;const mr=Math.min(1,sportMin(d)/Math.max(1,g.sport));
-  const s=d.sport.rest&&!d.acts.length?35+65*sr:40*sr+45*mr+(d.acts.length?15:0);return{has,score:Math.round(Math.min(100,s))}}
+function sportCat(d){const g=S.goals;const st=d.sport.steps;const w=d.sport.water;const has=st!=null||d.acts.length>0||d.sport.rest||w!=null;
+  const sr=st?Math.min(1,st/Math.max(1,g.steps)):0;const mr=Math.min(1,sportMin(d)/Math.max(1,g.sport));const wr=w!=null?Math.min(1,w/8):null;
+  let s=d.sport.rest&&!d.acts.length?35+65*sr:40*sr+45*mr+(d.acts.length?15:0);if(wr!=null)s=s*0.9+10*wr;return{has,score:Math.round(Math.min(100,s))}}
 function sleepCat(d,k){const g=S.goals.sleep;const dur=sleepDur(d);const sc=d.sleep.score;const has=dur!=null||sc!=null;if(!has)return{has,score:0,dur:null};
   if(dur==null)return{has,score:sc,dur:null};
   const dp=dur>=g?55:55*Math.max(0,(dur-(g-180))/180);
@@ -870,7 +974,10 @@ const DQ=[
  {id:'top3',cat:'life',t:()=>'Erledige deine Top-Aufgaben (mind. 2)',f:d=>{const t=d.life.tasks.filter(x=>x.top);return t.length>=2&&t.every(x=>x.done)}},
  {id:'morning',cat:'life',t:()=>'Morgenroutine komplett',f:d=>routineRate(d,'morning')===1},
  {id:'evening',cat:'life',t:()=>'Abendroutine komplett',f:d=>routineRate(d,'evening')===1},
- {id:'tidy',cat:'life',t:()=>'Zimmer oder Schreibtisch aufräumen',f:d=>d.life.tidy===true}];
+ {id:'tidy',cat:'life',t:()=>'Zimmer oder Schreibtisch aufräumen',f:d=>d.life.tidy===true},
+ {id:'water',cat:'sport',t:()=>'Trink 8 Gläser Wasser',f:d=>(d.sport.water||0)>=8},
+ {id:'journal',cat:'life',t:()=>'Schreib einen Satz über deinen Tag',f:d=>d.journal.line.trim().length>0},
+ {id:'checkins',cat:'life',t:()=>'Mach Morgen- und Abend-Check-in',f:d=>d.checkin.am&&d.checkin.pm}];
 function dailyQuests(k){const r=seeded('q'+k);const pool=DQ.slice();const out=[],used=new Set();
   while(out.length<3&&pool.length){const q=pool.splice(Math.floor(r()*pool.length),1)[0];if(used.has(q.cat)&&pool.some(x=>!used.has(x.cat)))continue;used.add(q.cat);out.push(q)}return out}
 function weekStartKey(k){const d=toDate(k||today());d.setDate(d.getDate()-(d.getDay()+6)%7);return keyOf(d)}
@@ -906,6 +1013,7 @@ function dayXP(k){const d=get(k);if(d===EMPTY)return 0;const b=d.brain;let x=0;
   const g=d.digital;if(g.first)x+=30;if(g.last)x+=30;if(g.screen!=null&&g.screen<=S.goals.screen)x+=40;if(g.shorts!=null&&g.shorts<=15)x+=30;
   const L=d.life;L.tasks.forEach(t=>{if(t.done)x+=10*tW(t)+(t.top?15:0)});if(routineRate(d,'morning')===1)x+=40;if(routineRate(d,'evening')===1)x+=40;if(L.tidy)x+=20;if(L.punctual)x+=15;if(L.useful>=4)x+=20;
   const q=dailyQuests(k).filter(q=>q.f(d)).length;x+=q*100+(q===3?150:0);
+  if(d.checkin.am)x+=50;if(d.checkin.pm)x+=50;if((d.sport.water||0)>=8)x+=20;if(d.journal.line.trim())x+=20;if(d.feel.mood||d.feel.energy||d.feel.day)x+=10;
   x+=d.gxp;if(d.closed){const s=scores(k).total;if(s!=null)x+=s*3}
   return Math.round(x)}
 function totalXP(){if(XPC)return XPC;let x=0;const weeks=new Set();Object.keys(days).forEach(k=>{x+=dayXP(k);weeks.add(weekStartKey(k))});
@@ -916,10 +1024,10 @@ const TITLES=[[100,'Final Boss'],[90,'Brainmaxxed'],[75,'Legende'],[60,'Mastermi
 const titleOf=L=>TITLES.find(([l])=>L>=l)[1];
 
 /* ================= Achievements ================= */
-function lifeStats(){const ks=Object.keys(days);const st={study:0,focus:0,steps:0,km:0,train:0,tasks:0,closed:0,best:0,five:false,deep90:false,first:0,cons90:false,games:0,morning:0,logged:0,bestStreak:0};
+function lifeStats(){const ks=Object.keys(days);const st={study:0,focus:0,steps:0,km:0,train:0,tasks:0,closed:0,best:0,five:false,deep90:false,first:0,cons90:false,games:0,morning:0,logged:0,bestStreak:0,checkins:0,journal:0};
   ks.forEach(k=>{const d=get(k);const s=scores(k);if(s.n)st.logged++;st.study+=d.brain.study;st.focus+=d.focus.length;st.steps+=d.sport.steps||0;st.km+=runKm(d);st.train+=d.acts.length;st.tasks+=d.life.tasks.filter(t=>t.done).length;
     if(d.closed)st.closed++;if(s.total!=null&&s.n>=2)st.best=Math.max(st.best,s.total);if(s.n===5)st.five=true;if(deepScore(d)>=90)st.deep90=true;if(d.digital.first)st.first++;
-    const c=s.c.sleep.cons;if(c&&c.n>=5&&c.score>=90)st.cons90=true;st.games+=sum(Object.values(d.games).map(g=>g.n||1));if(routineRate(d,'morning')===1)st.morning++});
+    const c=s.c.sleep.cons;if(c&&c.n>=5&&c.score>=90)st.cons90=true;st.games+=sum(Object.values(d.games).map(g=>g.n||1));if(routineRate(d,'morning')===1)st.morning++;st.checkins+=(d.checkin.am?1:0)+(d.checkin.pm?1:0);if(d.journal.line.trim())st.journal++});
   st.lifeRun=bestRun(STREAKS[0].f);st.sleepRun=bestRun(STREAKS[3].f);st.level=lvlOf(totalXP());st.detox=S.detoxDone.length;return st}
 const ACH=[
  ['start','Erster Eintrag','Den ersten Tag erfasst','01',s=>[s.logged,1]],
@@ -942,6 +1050,8 @@ const ACH=[
  ['task50','Erledigt','50 Aufgaben abgehakt','✓50',s=>[s.tasks,50]],
  ['morning7','Morgenmensch','7-mal Morgenroutine komplett','☀',s=>[s.morning,7]],
  ['close7','Reflektiert','7 Tage abgeschlossen','7✦',s=>[s.closed,7]],
+ ['ci14','Routine-Profi','14 Check-ins gemacht','CI',s=>[s.checkins,14]],
+ ['jour7','Tagebuch','7 Tage einen Satz geschrieben','✎',s=>[s.journal,7]],
  ['g25','Brain-Gamer','25 Brain-Spiele gespielt','G25',s=>[s.games,25]],
  ['lv10','Level 10','Level 10 erreicht','L10',s=>[s.level,10]],
  ['lv25','Level 25','Level 25 erreicht','L25',s=>[s.level,25]],
@@ -1673,11 +1783,11 @@ async function handleEntry(name,getBuf,res,depth){
 
 /* ================= Oberfläche ================= */
 const TABS=['today','focus','games','stats','prof'];
-let tab='today',openCat=null,monthOff=0,gFilter='all';
+let tab='today',monthOff=0,gFilter='all',chartSel='score',SHEET=null;
 function setTab(t){if(!TABS.includes(t))t='today';tab=t;
   TABS.forEach(x=>{$('#v-'+x).hidden=x!==t;$('#tb-'+x).setAttribute('aria-current',x===t?'page':'false')});
   try{localStorage.setItem('lifemaxx-tab',t)}catch(e){}render();window.scrollTo(0,0)}
-function render(){renderTop();({today:renderToday,focus:renderFocus,games:renderGames,stats:renderStats,prof:renderProfile})[tab]()}
+function render(){renderTop();({today:renderToday,focus:renderFocus,games:renderGames,stats:renderStats,prof:renderProfile})[tab]();if(SHEET&&SHEET.kind!=='static')renderSheet()}
 function commit(k){save(k||cur);render();checkDetox();checkAch()}
 
 /* ---------- Bausteine ---------- */
@@ -1687,85 +1797,93 @@ const fld=(label,sub,inner)=>`<div class="fld"><div class="fl"><span>${label}</s
 const tri=(path,val,yes,no)=>`<div class="tri"><button type="button" data-tog="${path}" data-v="1" aria-pressed="${val===true}">${yes||'Ja'}</button><button type="button" data-tog="${path}" data-v="0" aria-pressed="${val===false}">${no||'Nein'}</button></div>`;
 const kv=(label,val,sub,col)=>`<div class="kv"><span>${label}</span><b${col?` style="color:${col}"`:''}>${val}</b>${sub?`<small>${sub}</small>`:''}</div>`;
 const sec=(title,inner,right)=>`<section class="blk"><div class="bh"><h2>${title}</h2>${right||''}</div>${inner}</section>`;
+const fold=(title,inner,open)=>`<details class="fold"${open?' open':''}><summary><span>${title}</span><i>›</i></summary><div class="foldin">${inner}</div></details>`;
+const FEEL=['mies','meh','okay','gut','top'];
+const feel=(key,val)=>`<div class="seg feel">${[1,2,3,4,5].map(v=>`<button type="button" data-feel="${key}" data-v="${v}" aria-pressed="${val===v}"><b>${v}</b><small>${FEEL[v-1]}</small></button>`).join('')}</div>`;
 function dayLabel(k){const t=today(),d=toDate(k);return(k===t?'Heute':k===addDays(t,-1)?'Gestern':WD[d.getDay()]+'.')+' · '+d.getDate()+'. '+MONTHS[d.getMonth()].slice(0,3)+'.'}
 const dShort=k=>{const d=toDate(k);return d.getDate()+'.'+(d.getMonth()+1)+'.'};
 function weekKeysUpTo(k){const ws=weekStartKey(k);return[...Array(7)].map((_,i)=>addDays(ws,i)).filter(x=>x<=k)}
 function lastN(k,n){return[...Array(n)].map((_,i)=>addDays(k,i-n+1))}
+function ring(score,col,size){const r=19,c=2*Math.PI*r;const f=score==null?0:score/100;return`<svg viewBox="0 0 44 44" width="${size||56}" height="${size||56}" aria-hidden="true"><circle cx="22" cy="22" r="${r}" fill="none" stroke="var(--line)" stroke-width="3.5"/><circle cx="22" cy="22" r="${r}" fill="none" stroke="${col}" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="${(c*f).toFixed(1)} ${c.toFixed(1)}" transform="rotate(-90 22 22)"/></svg>`}
 
 /* ---------- Kopf ---------- */
 function renderTop(){const xp=totalXP(),L=lvlOf(xp);$('#lvChip').innerHTML=`LVL <b>${L}</b>`;
-  const ft=$('#ftChip');if(FT){ft.hidden=false;ft.textContent='◷ '+ftClock()}else ft.hidden=true}
+  const ft=$('#ftChip');if(FT){ft.hidden=false;ft.textContent=(FT.type==='pause'?'☕ ':'◷ ')+ftClock()}else ft.hidden=true}
 
 /* ---------- Heute ---------- */
-function catSummary(id,d,k,c){if(!c.has)return'Noch nichts eingetragen';
-  if(id==='brain'){const p=[];p.push(fmtDur(d.brain.study)+' von '+fmtDur(S.goals.study)+' gelernt');if(d.focus.length)p.push('Deep Work '+c.deep);return p.join(' · ')}
-  if(id==='sport'){const p=[];if(d.sport.steps!=null)p.push(nf(d.sport.steps)+' Schritte');if(d.acts.length)p.push(sportMin(d)+' min Sport');if(d.sport.rest&&!d.acts.length)p.push('Ruhetag');return p.join(' · ')}
-  if(id==='sleep'){const p=[];if(c.dur!=null)p.push(fmtMin(c.dur)+' h geschlafen');if(c.cons)p.push('Konsistenz '+c.cons.score);if(d.sleep.score!=null&&c.dur==null)p.push('Schlafscore '+d.sleep.score);return p.join(' · ')}
-  if(id==='digital'){const x=d.digital,p=[];if(x.screen!=null)p.push(fmtMin(x.screen)+' h Bildschirm');if(x.shorts!=null)p.push(x.shorts+' min Shorts');if(!p.length&&x.first)p.push('Erste Stunde handyfrei');return p.join(' · ')||'Teilweise erfasst'}
-  const t=d.life.tasks;if(t.length)return t.filter(x=>x.done).length+'/'+t.length+' Aufgaben · '+Math.round((c.rate||0)*100)+' % erledigt';return'Routinen & Alltag erfasst'}
+function nextStep(k,d,sc){const t=today();if(k!==t)return null;const h=new Date().getHours();const g=S.goals;
+  if(FT)return{t:FT.type==='pause'?'Pause läuft':'Fokus-Session läuft · '+ftClock(),b:['Zum Timer','gofocus']};
+  if(h<12&&!d.checkin.am)return{t:'Starte mit dem Morgen-Check-in. Dauert eine Minute.',b:['Check-in starten','ci-am']};
+  if(h>=19&&!d.checkin.pm)return{t:'Zeit für den Abend-Check-in. Danach steht dein Score.',b:['Check-in starten','ci-pm']};
+  const dur=sc.c.sleep.dur;if(h>=20&&bedBy()!=null)return{t:`Für ${fmtMin(g.sleep)} h Schlaf solltest du um <b>${fmtClock(bedBy())}</b> im Bett sein.`,b:null};
+  if(dur!=null&&dur<g.sleep-60&&h<16)return{t:`Nur ${fmtMin(dur)} h geschlafen. Heute locker machen, früher ins Bett.`,b:null};
+  if(d.brain.study<g.study)return{t:`Noch <b>${fmtDur(g.study-d.brain.study)}</b> Lernen bis zum Tagesziel.`,b:['Fokus starten','gofocus']};
+  const q=dailyQuests(k).find(q=>!q.f(d));if(q)return{t:'Offene Quest: <b>'+esc(q.t())+'</b>',b:null};
+  if(d.sport.steps!=null&&d.sport.steps<g.steps)return{t:`Noch <b>${nf(g.steps-d.sport.steps)}</b> Schritte bis zum Ziel.`,b:null};
+  return{t:'Alles im Plan. Stark.',b:null}}
 function renderToday(){const k=cur,t=today(),d=get(k),sc=scores(k),tot=sc.total;
-  const[tn,tr]=tot!=null?tier(tot):['Noch leer','Tipp unten auf einen Bereich und leg los.'];
-  const rkT=rankText(rankOf(k));
-  const col=zone(tot);const lit=tot!=null?Math.round(tot/2.5):0;
-  const dur=sc.c.sleep.dur;const warn=dur!=null&&dur<S.goals.sleep-60;
-  const qs=dailyQuests(k);const qd=qs.filter(q=>q.f(d)).length;
-  let h=`<div class="dnav"><button class="ib" data-act="prev" aria-label="Vorheriger Tag">‹</button><span>${dayLabel(k)}</span><button class="ib" data-act="next" aria-label="Nächster Tag"${k>=t?' disabled':''}>›</button>${k!==t?'<button class="tb" data-act="today">HEUTE</button>':''}</div>
+  const[tn,tr]=tot!=null?tier(tot):['Noch leer','Mach einen Check-in oder tipp auf einen Ring.'];
+  const rkT=rankText(rankOf(k));const col=zone(tot);const lit=tot!=null?Math.round(tot/2.5):0;
+  const qs=dailyQuests(k);const qd=qs.filter(q=>q.f(d)).length;const ns=nextStep(k,d,sc);
+  let h=`<div class="dnav"><button class="ib" data-act="prev" aria-label="Vorheriger Tag">‹</button><span>${dayLabel(k)}</span><button class="ib" data-act="next" aria-label="Nächster Tag"${k>=t?' disabled':''}>›</button></div>
   <div class="hero"><div><span class="lab">Life Score</span><div class="bignum" style="color:${col}">${tot??'–'}</div></div>
     <div class="hr"><div class="tn">${tn}</div><div class="trm">${tr}</div>${rkT?`<div class="rk">${rkT}</div>`:''}</div></div>
   <div class="dots">${[...Array(40)].map((_,i)=>`<i${i<lit?` style="background:${col}"`:''}></i>`).join('')}</div>
-  <div class="cov">${sc.n}/5 Bereiche erfasst${sc.n&&sc.n<3?' · Score noch vorläufig':''}</div>`;
-  if(warn)h+=`<div class="warn"><b>Zu wenig Schlaf.</b> ${fmtMin(dur)} h statt ${fmtMin(S.goals.sleep)} h. Heute lieber locker trainieren und früher ins Bett${tmin(d.sleep.wake)!=null?', am besten bis '+fmtClock(tmin(d.sleep.wake)-S.goals.sleep):''}.</div>`;
-  h+=`<div class="cats">`+CATS.map(c=>{const x=sc.c[c.id];const open=openCat===c.id;
-    return`<div class="cat${open?' open':''}"><button class="crow" data-cat="${c.id}" aria-expanded="${open}"><span class="cd" style="background:${c.col}"></span><span class="cn">${c.name}</span><span class="cs" style="color:${x.has?zone(x.score):'var(--faint)'}">${x.has?x.score:'–'}</span>${bar(x.has?x.score/100:0,x.has?zone(x.score):'')}<span class="csum">${esc(catSummary(c.id,d,k,x))}</span><span class="chev">${open?'−':'+'}</span></button>${open?`<div class="panel">${PANELS[c.id](d,k,x)}</div>`:''}</div>`}).join('')+`</div>`;
-  h+=sec('Daily Quests',qs.map(q=>{const ok=q.f(d);return`<div class="quest${ok?' ok':''}"><span class="qc">${ok?'✓':''}</span><span class="qt">${esc(q.t())}</span><span class="qx">+100 XP</span></div>`}).join('')+`<div class="hint">${qd===3?'Alle drei geschafft: +150 XP Bonus.':'Alle drei schaffen gibt +150 XP Bonus.'}</div>`,`<span class="val">${qd}/3</span>`);
+  <div class="rings">${CATS.map(c=>{const x=sc.c[c.id];return`<button class="rg" data-cat="${c.id}" aria-label="${c.name} bearbeiten">${ring(x.has?x.score:null,c.col)}<b style="color:${x.has?'var(--text)':'var(--faint)'}">${x.has?x.score:'–'}</b><span>${c.name}</span></button>`}).join('')}</div>
+  <div class="cis"><button class="ci${d.checkin.am?' done':''}" data-act="ci-am"><span>☀</span><b>Morgen-Check-in</b><small>${d.checkin.am?'erledigt':'1 Min'}</small></button><button class="ci${d.checkin.pm?' done':''}" data-act="ci-pm"><span>☾</span><b>Abend-Check-in</b><small>${d.checkin.pm?'erledigt':'2 Min'}</small></button></div>`;
+  if(ns)h+=`<div class="next"><span class="lab">Als Nächstes</span><p>${ns.t}</p>${ns.b?`<button class="btn solid" data-act="${ns.b[1]}">${ns.b[0]}</button>`:''}</div>`;
+  h+=sec('Daily Quests',qs.map(q=>{const ok=q.f(d);return`<div class="quest${ok?' ok':''}"><span class="qc">${ok?'✓':''}</span><span class="qt">${esc(q.t())}</span><span class="qx">+100</span></div>`}).join(''),`<span class="val">${qd}/3${qd===3?' · +150 Bonus':''}</span>`);
   if(sc.n)h+=`<button class="btn ${d.closed?'':'accent '}big wide" data-act="close">${d.closed?'Tagesabschluss ansehen':'Tag abschließen · +'+((tot||0)*3)+' XP'}</button>`;
   $('#v-today').innerHTML=h;
 }
 
-/* ---------- Panels ---------- */
-const PANELS={
+/* ---------- Bereichs-Editoren ---------- */
+function actsBlock(d){return`<div class="acts">${d.acts.length?d.acts.map((a,i)=>`<div class="act"><span class="ty">${esc(a.type==='Workout'?'Kraft':a.type)}</span><span class="nm">${esc(a.name||a.type)}${a.src&&a.src!=='manuell'?`<small>${esc(a.src)}</small>`:''}</span><span class="num">${a.km?(+a.km).toFixed(1).replace('.',',')+' km · ':''}${a.min} min</span><button class="x" data-adel="${i}" aria-label="Training löschen">×</button></div>`).join(''):'<div class="hint">Noch kein Training eingetragen.</div>'}</div>
+  <form class="addrow" id="actForm"><select class="in" id="aType" aria-label="Sportart"><option>Lauf</option><option>Tischtennis</option><option value="Workout">Krafttraining</option><option>Rad</option><option>Schwimmen</option><option>Gehen</option><option>Sonstiges</option></select><input class="in sm" id="aMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><input class="in sm" id="aKm" inputmode="decimal" placeholder="km" aria-label="Kilometer"><button class="btn solid" aria-label="Training hinzufügen">+</button></form>`}
+function tasksBlock(d,add){const L=d.life;return`<div class="tasks">${L.tasks.map(t=>`<div class="task${t.done?' done':''}"><button class="tk" data-tid="${t.id}" data-ta="done" aria-label="erledigt">${t.done?'✓':''}</button><span class="tt">${esc(t.t)}</span><button class="tp p${t.p}" data-tid="${t.id}" data-ta="prio" aria-label="Wichtigkeit">${['','N','M','H'][t.p]}</button><button class="tst${t.top?' on':''}" data-tid="${t.id}" data-ta="top" aria-label="Top 3">★</button><button class="x" data-tid="${t.id}" data-ta="del" aria-label="löschen">×</button></div>`).join('')}</div>
+  ${add!==false?`<form class="addrow" id="taskForm"><input class="in wide" id="taskIn" maxlength="100" placeholder="Neue Aufgabe …" enterkeyhint="done"><button class="btn solid" aria-label="Aufgabe hinzufügen">+</button></form>`:''}`}
+const routineBlock=(d,which)=>`<div class="chips">${S[which].map((it,i)=>`<button type="button" class="chip" data-rt="${which}" data-ri="${i}" aria-pressed="${!!d.life[which][it]}">${esc(it)}</button>`).join('')}</div>`;
+function sleepTimes(d){const dur=sleepDur(d);const g=S.goals.sleep;return`<div class="grid2">${fld('Ins Bett','gestern Abend',`<input class="in time" type="time" data-path="sleep.bed" value="${d.sleep.bed}">`)}${fld('Aufgestanden','heute Morgen',`<input class="in time" type="time" data-path="sleep.wake" value="${d.sleep.wake}">`)}</div>
+  <div class="sleepbig"><b style="color:${dur==null?'var(--faint)':dur>=g?'var(--good)':dur>=g-60?'var(--acc)':'var(--bad)'}">${dur==null?'–':fmtMin(dur)+' h'}</b><span>Ziel ${fmtMin(g)} h${dur!=null?' · '+(dur>=g?'geschafft':'noch '+fmtDur(g-dur)+' zu wenig'):''}</span></div>`}
+function bedCalc(){const b=bedBy();return`<div class="grid2">${fld('Morgen aufstehen um','Wecker',`<input class="in time" type="time" data-swake="1" value="${S.wakeTarget}">`)}${fld('Spätestens ins Bett','Schlafziel + 15 Min Einschlafen',`<div class="bedby">${b==null?'–':fmtClock(b)}</div>`)}</div>`}
+const EDIT={
  brain(d,k,c){const g=S.goals;const wk=sum(weekKeysUpTo(k).map(x=>get(x).brain.study));const f=d.focus;const fm=sum(f.map(x=>x.min));const pfm=sum(f.map(x=>x.pf?x.min:0));
-  return`<div class="grid2">${fld('Lernzeit','Ziel '+fmtDur(g.study),stepper('brain.study',d.brain.study,15,'min'))}${fld('Aufgaben gelernt','gerechnet, geübt, gelöst',stepper('brain.tasks',d.brain.tasks,1,'Stk.'))}${fld('Lesen','Bücher, Artikel',stepper('brain.read',d.brain.read,10,'min'))}${fld('Wiederholungen','Anki, Karteikarten',stepper('brain.anki',d.brain.anki,10,'Karten'))}</div>
-   <div class="prog"><div class="pl"><span>Tagesziel</span><b>${fmtDur(d.brain.study)} / ${fmtDur(g.study)}</b></div>${bar(d.brain.study/g.study,'#B9A3FF')}</div>
-   <div class="prog"><div class="pl"><span>Wochenziel</span><b>${fmtMin(wk)} / ${fmtMin(g.studyWeek)} h</b></div>${bar(wk/g.studyWeek,'#B9A3FF')}</div>
-   <div class="kvs">${kv('Deep-Work-Score',c.deep,f.length?`${f.length} Session${f.length>1?'s':''} · ${fm} min · ${fm?Math.round(pfm/fm*100):0} % handyfrei`:'Starte eine Fokus-Session')}${kv('Konzentration',fmtDur(fm),'mit dem Fokus-Timer')}${kv('Lern-Streak',streakOf(STREAKS[1].f)+' Tage','ab 30 Min am Tag')}${kv('Brain-Spiele',Object.keys(d.games).length,'heute gespielt')}</div>
-   <div class="row"><button class="btn accent" data-act="gofocus">Fokus-Timer starten</button><button class="btn" data-act="gogames">Brain-Spiele</button></div>`},
- sport(d,k,c){const g=S.goals;const rec=recovery(k);const wk=weekKeysUpTo(k).map(get);const wMin=sum(wk.map(sportMin)),wKm=sum(wk.map(runKm)),wN=sum(wk.map(x=>x.acts.length)),wSt=sum(wk.map(x=>x.sport.steps||0));
-  return`${fld('Schritte','Ziel '+nf(g.steps),stepper('sport.steps',d.sport.steps,500,'Schritte','–'))}${bar((d.sport.steps||0)/g.steps,'#9FCBAA')}
-   <div class="sub2"><span class="lab">Trainings heute</span></div>
-   <div class="acts">${d.acts.length?d.acts.map((a,i)=>`<div class="act"><span class="ty">${esc(a.type)}</span><span class="nm">${esc(a.name||a.type)}${a.src&&a.src!=='manuell'?`<small>${esc(a.src)}</small>`:''}</span><span class="num">${a.km?(+a.km).toFixed(1).replace('.',',')+' km · ':''}${a.min} min</span><button class="x" data-adel="${i}" aria-label="Training löschen">×</button></div>`).join(''):'<div class="hint">Noch kein Training. Unten eintragen oder eine Datei aus Strava oder Garmin importieren.</div>'}</div>
-   <form class="addrow" id="actForm"><select class="in" id="aType" aria-label="Sportart"><option>Lauf</option><option>Tischtennis</option><option value="Workout">Krafttraining</option><option>Rad</option><option>Schwimmen</option><option>Gehen</option><option>Sonstiges</option></select><input class="in sm" id="aMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><input class="in sm" id="aKm" inputmode="decimal" placeholder="km" aria-label="Kilometer"><button class="btn solid">+</button></form>
-   <div class="row"><button type="button" class="tog" data-act="rest" aria-pressed="${d.sport.rest}">Geplanter Ruhetag</button><button class="btn" data-act="import">Strava / Garmin importieren</button></div>
-   ${rec!=null?`<div class="note${rec<50?' bad':''}">Erholung <b>${rec}</b> · ${rec<50?'Dein Körper braucht Pause. Heute locker bewegen oder Ruhetag.':rec<70?'Okay. Normales Training geht, kein Maximaltest.':'Gut erholt. Heute darf es auch hart sein.'}</div>`:''}
-   <div class="kvs">${kv('Sportzeit heute',sportMin(d)+' min','Ziel '+g.sport+' min')}${kv('Laufen heute',runKm(d).toFixed(1).replace('.',',')+' km')}${kv('Diese Woche',wMin+' min',`${wN} Trainings · ${wKm.toFixed(1).replace('.',',')} km · ${nf(wSt)} Schritte`)}${kv('Trainings-Streak',streakOf(STREAKS[2].f)+' Tage','Ruhetage zählen mit')}</div>`},
- sleep(d,k,c){const g=S.goals.sleep;const dur=c.dur;const rec=recovery(k);const ks=lastN(k,7);const durs=ks.map(x=>sleepDur(get(x)));const av=avg(durs.filter(x=>x!=null));
-  return`<div class="grid2">${fld('Ins Bett','gestern Abend',`<input class="in time" type="time" data-path="sleep.bed" value="${d.sleep.bed}">`)}${fld('Aufgestanden','heute Morgen',`<input class="in time" type="time" data-path="sleep.wake" value="${d.sleep.wake}">`)}</div>
-   <div class="sleepbig"><b style="color:${dur==null?'var(--faint)':dur>=g?'var(--good)':dur>=g-60?'var(--acc)':'var(--bad)'}">${dur==null?'–':fmtMin(dur)+' h'}</b><span>Schlafziel ${fmtMin(g)} h${dur!=null?' · '+(dur>=g?'geschafft':'noch '+fmtDur(g-dur)+' zu wenig'):''}</span></div>
-   <div class="kvs">${kv('Konsistenz',c.cons?c.cons.score:'–',c.cons?'± '+c.cons.sd+' min Schwankung':'ab 3 Nächten')}${kv('Erholung',rec==null?'–':rec,'Schlaf, Uhr-Werte, Training')}${kv('Ø 7 Nächte',av==null?'–':fmtMin(av)+' h')}${kv('Schlaf-Streak',streakOf(STREAKS[3].f)+' Nächte')}</div>
-   ${miniBars(durs,ks,g,v=>fmtMin(v))}
-   <details class="more"><summary>Werte von der Uhr (optional)</summary><div class="grid2">${fld('Schlafscore','Garmin, Apple, …',stepper('sleep.score',d.sleep.score,5,'/100','–'))}${fld('Ruhepuls','',stepper('sleep.rhr',d.sleep.rhr,1,'bpm','–'))}${fld('Body Battery','Höchstwert',stepper('sleep.bb',d.sleep.bb,5,'/100','–'))}${fld('Stress','Durchschnitt',stepper('sleep.stress',d.sleep.stress,5,'/100','–'))}</div></details>`},
+  return`<div class="grid2">${fld('Lernzeit','Ziel '+fmtDur(g.study),stepper('brain.study',d.brain.study,15,'min'))}${fld('Aufgaben gelernt','gerechnet, geübt',stepper('brain.tasks',d.brain.tasks,1,'Stk.'))}${fld('Lesen','Bücher, Artikel',stepper('brain.read',d.brain.read,10,'min'))}${fld('Wiederholungen','Anki, Karteikarten',stepper('brain.anki',d.brain.anki,10,'Karten'))}</div>
+   <div class="prog"><div class="pl"><span>Heute</span><b>${fmtDur(d.brain.study)} / ${fmtDur(g.study)}</b></div>${bar(d.brain.study/g.study,'#B9A3FF')}</div>
+   <div class="prog"><div class="pl"><span>Diese Woche</span><b>${fmtMin(wk)} / ${fmtMin(g.studyWeek)} h</b></div>${bar(wk/g.studyWeek,'#B9A3FF')}</div>
+   <div class="kvs">${kv('Deep Work',c.deep,f.length?`${fm} min · ${fm?Math.round(pfm/fm*100):0} % handyfrei`:'Fokus-Timer nutzen')}${kv('Lern-Streak',streakOf(STREAKS[1].f)+' T.')}${kv('Brain-Spiele',Object.keys(d.games).length)}</div>
+   <div class="row"><button class="btn accent" data-act="gofocus">Fokus-Timer</button><button class="btn" data-act="gogames">Brain-Spiele</button></div>`},
+ sport(d,k,c){const g=S.goals;const rec=recovery(k);const wk=weekKeysUpTo(k).map(get);const wMin=sum(wk.map(sportMin)),wKm=sum(wk.map(runKm));
+  return`<div class="grid2">${fld('Schritte','Ziel '+nf(g.steps),stepper('sport.steps',d.sport.steps,500,'','–'))}${fld('Wasser','Ziel 8 Gläser',stepper('sport.water',d.sport.water,1,'Gläser','–'))}</div>
+   ${bar((d.sport.steps||0)/g.steps,'#9FCBAA')}
+   <div class="sub2"><span class="lab">Training</span><button type="button" class="tog sm" data-act="rest" aria-pressed="${d.sport.rest}">Ruhetag</button></div>${actsBlock(d)}
+   ${rec!=null?`<div class="note${rec<50?' bad':''}">Erholung <b>${rec}</b> · ${rec<50?'Heute lieber locker oder Ruhetag.':rec<70?'Normales Training okay, kein Maximaltest.':'Gut erholt. Heute darf es hart sein.'}</div>`:''}
+   <div class="kvs">${kv('Sport heute',sportMin(d)+' min','Ziel '+g.sport)}${kv('Woche',wMin+' min',wKm.toFixed(1).replace('.',',')+' km Lauf')}${kv('Streak',streakOf(STREAKS[2].f)+' T.')}</div>
+   <button class="btn" data-act="import">Strava / Garmin importieren</button>`},
+ sleep(d,k,c){const rec=recovery(k);const ks=lastN(k,7);const durs=ks.map(x=>sleepDur(get(x)));const av=avg(durs.filter(x=>x!=null));
+  return`${sleepTimes(d)}
+   <div class="kvs">${kv('Konsistenz',c.cons?c.cons.score:'–',c.cons?'± '+c.cons.sd+' min':'ab 3 Nächten')}${kv('Erholung',rec==null?'–':rec)}${kv('Ø 7 Nächte',av==null?'–':fmtMin(av)+' h')}</div>
+   ${miniBars(durs,ks,S.goals.sleep,v=>fmtMin(v))}
+   <div class="sub2"><span class="lab">Schlafrechner</span><span class="val">Streak ${streakOf(STREAKS[3].f)}</span></div>${bedCalc()}
+   ${fold('Werte von der Uhr',`<div class="grid2">${fld('Schlafscore','',stepper('sleep.score',d.sleep.score,5,'','–'))}${fld('Ruhepuls','',stepper('sleep.rhr',d.sleep.rhr,1,'bpm','–'))}${fld('Body Battery','Höchstwert',stepper('sleep.bb',d.sleep.bb,5,'','–'))}${fld('Stress','Ø',stepper('sleep.stress',d.sleep.stress,5,'','–'))}</div>`)}`},
  digital(d,k,c){const x=d.digital,g=S.goals;const av=avgBack(k,y=>y.digital.screen,14);let cmp='';
-  if(x.screen!=null&&av!=null&&av>0){const p=Math.round((x.screen-av)/av*100);cmp=`<div class="note${p>10?' bad':p<-5?' good':''}">${p===0?'Genau':Math.abs(p)+' %'} ${p>0?'mehr':p<0?'weniger':''} als dein Ø der letzten 14 Tage (${fmtMin(av)} h).</div>`}
+  if(x.screen!=null&&av!=null&&av>0){const p=Math.round((x.screen-av)/av*100);cmp=`<div class="note${p>10?' bad':p<-5?' good':''}">${p===0?'Genau wie':Math.abs(p)+' % '+(p>0?'mehr':'weniger')+' als'} dein Ø (${fmtMin(av)} h).</div>`}
   const dt=detoxState(S.detox);
-  return`<div class="grid2">${fld('Bildschirmzeit','Limit '+fmtMin(g.screen)+' h',stepper('digital.screen',x.screen,15,'min','–'))}${fld('Social Media','Insta, Snap, …',stepper('digital.social',x.social,15,'min','–'))}${fld('Short-Videos','TikTok, Reels, Shorts',stepper('digital.shorts',x.shorts,5,'min','–'))}${fld('Pickups','Handy entsperrt',stepper('digital.pickups',x.pickups,5,'×','–'))}${fld('Fokus-Modus','iPhone-Fokus aktiv',stepper('digital.fmode',x.fmode,15,'min','–'))}</div>
-   ${x.screen!=null?`<div class="hint">${fmtMin(x.screen)} h Bildschirmzeit${x.screen>g.screen?' · '+fmtDur(x.screen-g.screen)+' über deinem Limit':''}</div>`:''}
+  return`<div class="grid2">${fld('Bildschirmzeit','Limit '+fmtMin(g.screen)+' h',stepper('digital.screen',x.screen,15,'min','–'))}${fld('Short-Videos','TikTok, Reels, Shorts',stepper('digital.shorts',x.shorts,5,'min','–'))}${fld('Social Media','',stepper('digital.social',x.social,15,'min','–'))}${fld('Pickups','Entsperrungen',stepper('digital.pickups',x.pickups,5,'×','–'))}</div>
    ${cmp}
    <div class="grid2">${fld('Erste Stunde handyfrei','nach dem Aufwachen',tri('digital.first',x.first))}${fld('Letzte Stunde handyfrei','vor dem Schlafen',tri('digital.last',x.last))}</div>
-   <div class="detox"><span class="lab">Digital-Detox-Challenge</span>${dt?`<b>${DETOX[S.detox.type].t}</b><div class="pldots">${dt.st.map((s,i)=>`<span class="${s==='ok'?'ok':s==='fail'?'fail':s==='open'?'now':''}">${WD[toDate(dt.ks[i]).getDay()]}</span>`).join('')}</div>${dt.failed?'<div class="note bad">Ein Tag hat nicht geklappt. Neu starten?</div>':'<div class="hint">7 Tage am Stück schaffen gibt +1.000 XP.</div>'}<div class="row"><button class="btn" data-act="detox-stop">${dt.failed?'Neu wählen':'Abbrechen'}</button></div>`
-     :`<div class="row"><select class="in" id="detoxSel" aria-label="Challenge wählen">${Object.keys(DETOX).map(id=>`<option value="${id}">${DETOX[id].t}</option>`).join('')}</select><button class="btn accent" data-act="detox-start">Starten</button></div><div class="hint">${S.detoxDone.length?S.detoxDone.length+' Challenge'+(S.detoxDone.length>1?'s':'')+' geschafft. ':''}Startet heute und läuft 7 Tage.</div>`}</div>
-   <div class="hint">Alle Werte findest du auf dem iPhone unter Einstellungen → Bildschirmzeit → Alle Aktivitäten anzeigen.</div>`},
+   ${fold('Fokus-Modus & Detox-Challenge',`${fld('Fokus-Modus','iPhone-Fokus aktiv',stepper('digital.fmode',x.fmode,15,'min','–'))}
+     <div class="detox">${dt?`<b>${DETOX[S.detox.type].t}</b><div class="pldots">${dt.st.map((s,i)=>`<span class="${s==='ok'?'ok':s==='fail'?'fail':s==='open'?'now':''}">${WD[toDate(dt.ks[i]).getDay()]}</span>`).join('')}</div>${dt.failed?'<div class="note bad">Ein Tag hat nicht geklappt.</div>':'<div class="hint">7 Tage schaffen: +1.000 XP</div>'}<button class="btn" data-act="detox-stop">${dt.failed?'Neu wählen':'Abbrechen'}</button>`
+       :`<span class="lab">Digital-Detox · 7 Tage</span><div class="addrow"><select class="in wide" id="detoxSel" aria-label="Challenge wählen">${Object.keys(DETOX).map(id=>`<option value="${id}">${DETOX[id].t}</option>`).join('')}</select><button class="btn accent" data-act="detox-start">Start</button></div>`}</div>`,!!dt)}
+   <div class="hint">Werte stehen unter Einstellungen → Bildschirmzeit → Alle Aktivitäten anzeigen.</div>`},
  life(d,k,c){const L=d.life;const tr=c.rate;const y=get(addDays(k,-1));const carry=y.life.tasks.filter(t=>!t.done&&!L.tasks.some(x=>x.t===t.t));
-  const rt=(which,title)=>`<div class="sub2"><span class="lab">${title}</span><span class="val">${S[which].filter(i=>L[which][i]).length}/${S[which].length}</span></div><div class="chips">${S[which].map((it,i)=>`<button type="button" class="chip" data-rt="${which}" data-ri="${i}" aria-pressed="${!!L[which][it]}">${esc(it)}</button>`).join('')}</div>`;
-  return`${fld('Tagesziel','ein Satz, was heute zählt',`<input class="in wide" data-path="life.goal" maxlength="120" value="${esc(L.goal)}" placeholder="z. B. Mathe-Klausur vorbereiten" enterkeyhint="done">`)}
-   <div class="sub2"><span class="lab">Aufgaben</span><span class="hint">★ = Top 3 · H/M/N = Wichtigkeit</span></div>
-   <div class="tasks">${L.tasks.map(t=>`<div class="task${t.done?' done':''}"><button class="tk" data-tid="${t.id}" data-ta="done" aria-label="erledigt">${t.done?'✓':''}</button><span class="tt">${esc(t.t)}</span><button class="tp p${t.p}" data-tid="${t.id}" data-ta="prio" aria-label="Wichtigkeit">${['','N','M','H'][t.p]}</button><button class="tst${t.top?' on':''}" data-tid="${t.id}" data-ta="top" aria-label="Top 3">★</button><button class="x" data-tid="${t.id}" data-ta="del" aria-label="löschen">×</button></div>`).join('')}</div>
-   <form class="addrow" id="taskForm"><input class="in wide" id="taskIn" maxlength="100" placeholder="Neue Aufgabe …" enterkeyhint="done"><button class="btn solid">+</button></form>
-   ${carry.length?`<button class="btn" data-act="carry">${carry.length} offene Aufgabe${carry.length>1?'n':''} von gestern übernehmen</button>`:''}
-   ${tr!=null?`<div class="prog"><div class="pl"><span>Erledigungsquote (gewichtet)</span><b>${Math.round(tr*100)} %</b></div>${bar(tr,'#F0A73C')}</div>`:''}
-   ${rt('morning','Morgenroutine')}${rt('evening','Abendroutine')}
-   <div class="grid2">${fld('Zimmer / Schreibtisch','aufgeräumt?',tri('life.tidy',L.tidy))}${fld('Pünktlich','überall rechtzeitig?',tri('life.punctual',L.punctual))}</div>
-   ${fld('Zeit sinnvoll genutzt?','1 = verschwendet · 5 = maximal genutzt',`<div class="seg">${[1,2,3,4,5].map(v=>`<button type="button" data-useful="${v}" aria-pressed="${L.useful===v}">${v}</button>`).join('')}</div>`)}
-   <div class="hint">Routinen änderst du im Profil.</div>`}
+  return`${fld('Tagesziel','',`<input class="in wide" data-path="life.goal" maxlength="120" value="${esc(L.goal)}" placeholder="Was zählt heute?" enterkeyhint="done">`)}
+   <div class="sub2"><span class="lab">Aufgaben</span><span class="hint">★ Top 3 · H/M/N Wichtigkeit</span></div>${tasksBlock(d)}
+   ${carry.length?`<button class="btn" data-act="carry">${carry.length} offene von gestern übernehmen</button>`:''}
+   ${tr!=null?`<div class="prog"><div class="pl"><span>Erledigt (gewichtet)</span><b>${Math.round(tr*100)} %</b></div>${bar(tr,'#F0A73C')}</div>`:''}
+   ${fold('Morgen- & Abendroutine',`<span class="lab">Morgen</span>${routineBlock(d,'morning')}<span class="lab">Abend</span>${routineBlock(d,'evening')}<p class="hint">Punkte änderst du im Profil.</p>`)}
+   <div class="grid2">${fld('Aufgeräumt','Zimmer / Schreibtisch',tri('life.tidy',L.tidy))}${fld('Pünktlich','',tri('life.punctual',L.punctual))}</div>
+   ${fld('Zeit sinnvoll genutzt?','',`<div class="seg">${[1,2,3,4,5].map(v=>`<button type="button" data-useful="${v}" aria-pressed="${L.useful===v}">${v}</button>`).join('')}</div>`)}`}
 };
 function miniBars(vals,ks,goal,fmt){const max=Math.max(goal*1.15,...vals.map(v=>v||0));const W=280,H=74,b=56;const sl=W/vals.length;let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Schlaf der letzten 7 Nächte">`;
   const gy=b-goal/max*(b-6);s+=`<line x1="0" x2="${W}" y1="${gy.toFixed(1)}" y2="${gy.toFixed(1)}" stroke="var(--acc)" stroke-dasharray="3 4"/>`;
@@ -1773,77 +1891,105 @@ function miniBars(vals,ks,goal,fmt){const max=Math.max(goal*1.15,...vals.map(v=>
     s+=`<text x="${(x+w/2).toFixed(1)}" y="${b+13}" text-anchor="middle" font-size="9" font-family="Geist Mono, monospace" fill="var(--faint)">${WD[toDate(ks[i]).getDay()]}</text>`});
   return s+`<line x1="0" x2="${W}" y1="${b}" y2="${b}" stroke="var(--line2)"/></svg>`}
 
+/* ---------- Sheets ---------- */
+function openSheet(html){SHEET={kind:'static'};$('#sheet').innerHTML=html;$('#modal').hidden=false;$('#sheet').scrollTop=0}
+function closeSheet(){SHEET=null;$('#modal').hidden=true;$('#sheet').innerHTML=''}
+function openCat(id){SHEET={kind:'cat',id};$('#modal').hidden=false;renderSheet(true)}
+function openCheckin(type){SHEET={kind:'ci',type,step:0};$('#modal').hidden=false;renderSheet(true)}
+const CI={
+ am:{name:'Morgen-Check-in',steps:[
+  {t:'Wie hast du geschlafen?',f:d=>sleepTimes(d)},
+  {t:'Wie fühlst du dich?',f:d=>fld('Stimmung','',feel('mood',d.feel.mood))+fld('Energie','',feel('energy',d.feel.energy))+'<p class="hint">Fließt nicht in den Score ein. Dient nur für deine Insights.</p>'},
+  {t:'Erste Stunde ohne Handy?',f:d=>tri('digital.first',d.digital.first,'Ja, geschafft','Nein')+'<p class="hint">Falls du gerade erst aufgestanden bist, kannst du das später nachtragen.</p>'},
+  {t:'Morgenroutine',f:d=>routineBlock(d,'morning')},
+  {t:'Deine Top 3 für heute',f:d=>tasksBlock(d)+'<p class="hint">Die ersten drei Aufgaben werden automatisch zu deinen Top 3.</p>'}]},
+ pm:{name:'Abend-Check-in',steps:[
+  {t:'Lernen',f:d=>`<div class="grid2">${fld('Lernzeit','',stepper('brain.study',d.brain.study,15,'min'))}${fld('Aufgaben gelernt','',stepper('brain.tasks',d.brain.tasks,1,'Stk.'))}${fld('Lesen','',stepper('brain.read',d.brain.read,10,'min'))}${fld('Wiederholungen','',stepper('brain.anki',d.brain.anki,10,'Karten'))}</div><p class="hint">Fokus-Sessions sind schon mitgezählt.</p>`},
+  {t:'Bewegung',f:d=>`<div class="grid2">${fld('Schritte','',stepper('sport.steps',d.sport.steps,500,'','–'))}${fld('Wasser','',stepper('sport.water',d.sport.water,1,'Gläser','–'))}</div><div class="sub2"><span class="lab">Training</span><button type="button" class="tog sm" data-act="rest" aria-pressed="${d.sport.rest}">Ruhetag</button></div>${actsBlock(d)}`},
+  {t:'Bildschirm',f:d=>`<div class="grid2">${fld('Bildschirmzeit','',stepper('digital.screen',d.digital.screen,15,'min','–'))}${fld('Short-Videos','',stepper('digital.shorts',d.digital.shorts,5,'min','–'))}${fld('Social Media','',stepper('digital.social',d.digital.social,15,'min','–'))}${fld('Pickups','',stepper('digital.pickups',d.digital.pickups,5,'×','–'))}</div><p class="hint">Einstellungen → Bildschirmzeit → Alle Aktivitäten anzeigen.</p>`},
+  {t:'Was hast du geschafft?',f:d=>(d.life.tasks.length?tasksBlock(d,false):'<p class="hint">Heute keine Aufgaben eingetragen.</p>')+`<div class="grid2">${fld('Aufgeräumt','',tri('life.tidy',d.life.tidy))}${fld('Pünktlich','',tri('life.punctual',d.life.punctual))}</div>${fld('Zeit sinnvoll genutzt?','',`<div class="seg">${[1,2,3,4,5].map(v=>`<button type="button" data-useful="${v}" aria-pressed="${d.life.useful===v}">${v}</button>`).join('')}</div>`)}`},
+  {t:'Abendroutine',f:d=>routineBlock(d,'evening')+fld('Letzte Stunde vor dem Schlafen handyfrei?','',tri('digital.last',d.digital.last,'Ja, mach ich','Nein'))},
+  {t:'Wie war dein Tag?',f:d=>fld('Bewertung','',feel('day',d.feel.day))+fld('Ein Satz zum Tag','',`<input class="in wide" data-path="journal.line" maxlength="280" value="${esc(d.journal.line)}" placeholder="Heute war …" enterkeyhint="done">`)+fld('Dankbar für','optional',`<input class="in wide" data-path="journal.grat" maxlength="200" value="${esc(d.journal.grat)}" placeholder="…" enterkeyhint="done">`)},
+  {t:'Morgen früh',f:()=>bedCalc()+'<p class="hint">Danach kommt dein Tagesabschluss.</p>'}]}};
+function renderSheet(top){const el=$('#sheet');const y=el.scrollTop;const k=cur,d=get(k);let h='';
+  if(SHEET.kind==='cat'){const c=CATS.find(x=>x.id===SHEET.id);const x=scores(k).c[c.id];
+    h=`<div class="shh"><span class="cd" style="background:${c.col}"></span><b>${c.name}</b><span class="shs" style="color:${x.has?zone(x.score):'var(--faint)'}">${x.has?x.score:'–'}</span><button class="x" data-act="sheet-close" aria-label="Schließen">×</button></div><div class="shb">${EDIT[c.id](d,k,x)}</div>`}
+  else if(SHEET.kind==='ci'){const C=CI[SHEET.type];const i=SHEET.step;const st=C.steps[i];
+    h=`<div class="shh"><span></span><b>${C.name}</b><span class="shs">${i+1}/${C.steps.length}</span><button class="x" data-act="sheet-close" aria-label="Schließen">×</button></div><div class="cidots">${C.steps.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
+      <h3 class="cit">${st.t}</h3><div class="shb">${st.f(d,k)}</div>
+      <div class="row cinav">${i?'<button class="btn" data-act="ci-back">Zurück</button>':''}<button class="btn accent big" data-act="ci-next">${i<C.steps.length-1?'Weiter':'Fertig'}</button></div>`}
+  el.innerHTML=h;el.scrollTop=top?0:y}
+
 /* ---------- Tagesabschluss ---------- */
-function openSheet(html){$('#sheet').innerHTML=html;$('#modal').hidden=false}
-function closeSheet(){$('#modal').hidden=true;$('#sheet').innerHTML=''}
-function closeDaySheet(){const k=cur,d=get(k),sc=scores(k),tot=sc.total;if(tot==null)return;const[tn]=tier(tot);const rk=rankOf(k);
+function closeDaySheet(){const k=cur,d=get(k),sc=scores(k),tot=sc.total;if(tot==null){closeSheet();return}const[tn]=tier(tot);const rk=rankOf(k);
   const has=CATS.filter(c=>sc.c[c.id].has);const low=has.slice().sort((a,b)=>sc.c[a.id].score-sc.c[b.id].score)[0];const high=has.slice().sort((a,b)=>sc.c[b.id].score-sc.c[a.id].score)[0];
-  const tips={brain:'Morgen eine Fokus-Session einplanen.',sport:'Morgen mehr bewegen, schon ein Spaziergang hilft.',sleep:'Heute früher ins Bett.',digital:'Morgen die erste Stunde ohne Handy starten.',life:'Morgen früh deine Top 3 festlegen.'};
+  const tips={brain:'Morgen eine Fokus-Session einplanen.',sport:'Morgen mehr bewegen, schon ein Spaziergang hilft.',sleep:'Heute früher ins Bett'+(bedBy()!=null?', spätestens '+fmtClock(bedBy()):'')+'.',digital:'Morgen die erste Stunde ohne Handy starten.',life:'Morgen früh deine Top 3 festlegen.'};
   const xp=dayXP(k)+(d.closed?0:tot*3);
   openSheet(`<span class="lab">Tagesabschluss · ${dayLabel(k)}</span><div class="bignum" style="color:${zone(tot)}">${tot}</div><div class="tn">${tn}</div>
-   <div class="rk">${rankText(rk)}</div>
+   ${rankText(rk)?`<div class="rk">${rankText(rk)}</div>`:''}
    <div class="sbars">${CATS.map(c=>{const x=sc.c[c.id];return`<div class="sbr"><span>${c.name}</span>${bar(x.has?x.score/100:0,x.has?zone(x.score):'')}<b>${x.has?x.score:'–'}</b></div>`}).join('')}</div>
    ${high?`<div class="note good">Stärkster Bereich: <b>${high.name}</b> (${sc.c[high.id].score})</div>`:''}
    ${low&&low!==high?`<div class="note">Ausbaufähig: <b>${low.name}</b>. ${tips[low.id]}</div>`:''}
-   <div class="kvs">${kv('XP heute',nf(xp))}${kv('Life-Streak',streakOf(STREAKS[0].f)+' Tage')}${kv('Quests',dailyQuests(k).filter(q=>q.f(d)).length+'/3')}</div>
+   ${d.journal.line?`<div class="note">„${esc(d.journal.line)}“</div>`:''}
+   <div class="kvs">${kv('XP heute',nf(xp))}${kv('Life-Streak',streakOf(STREAKS[0].f)+' T.')}${kv('Quests',dailyQuests(k).filter(q=>q.f(d)).length+'/3')}</div>
    <div class="row">${d.closed?'<button class="btn solid" data-act="sheet-close">Schließen</button>':`<button class="btn accent big" data-act="close-confirm">Abschließen · +${tot*3} XP</button><button class="btn" data-act="sheet-close">Später</button>`}</div>`)}
 
 /* ---------- Fokus-Timer ---------- */
 const LSF='lifemaxx-focus';let FT=null,ftType='lernen',ftPlan=25,wakeLock=null,actx=null;
-const FTYPES={lernen:'Lernen',deep:'Deep Work',lesen:'Lesen'};
+const FTYPES={lernen:'Lernen',deep:'Deep Work',lesen:'Lesen',pause:'Pause'};
 function ftLoad(){try{FT=JSON.parse(localStorage.getItem(LSF)||'null')}catch(e){FT=null}}
 function ftSave(){try{if(FT)localStorage.setItem(LSF,JSON.stringify(FT));else localStorage.removeItem(LSF)}catch(e){}}
 function ftElapsed(){if(!FT)return 0;const now=FT.paused||Date.now();return Math.max(0,(now-FT.start-FT.pausedMs)/1000)}
 function ftClock(){if(!FT)return'';const e=ftElapsed();const s=FT.plan?Math.max(0,FT.plan*60-e):e;return pad2(Math.floor(s/60))+':'+pad2(Math.floor(s%60))}
 async function wakeOn(){if(!S.keepAwake||!navigator.wakeLock)return;try{wakeLock=await navigator.wakeLock.request('screen')}catch(e){}}
 function wakeOff(){try{if(wakeLock)wakeLock.release()}catch(e){}wakeLock=null}
-function beep(){try{if(!actx)return;const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.value=.08;o.connect(g);g.connect(actx.destination);o.start();o.stop(actx.currentTime+.35)}catch(e){}}
-function ftStart(){FT={type:ftType,plan:ftPlan,start:Date.now(),paused:null,pausedMs:0,ints:0,pf:true,seen:Date.now()};ftSave();try{actx=actx||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}wakeOn();render()}
+function beep(){try{if(!actx)return;[0,.45].forEach(t=>{const o=actx.createOscillator(),g=actx.createGain();o.frequency.value=880;g.gain.value=.08;o.connect(g);g.connect(actx.destination);o.start(actx.currentTime+t);o.stop(actx.currentTime+t+.3)})}catch(e){}}
+function ftStart(type,plan){FT={type:type||ftType,plan:plan==null?ftPlan:plan,start:Date.now(),paused:null,pausedMs:0,ints:0,pf:true,seen:Date.now()};ftSave();try{actx=actx||new (window.AudioContext||window.webkitAudioContext)()}catch(e){}wakeOn();render()}
 function ftPause(){if(!FT)return;if(FT.paused){FT.pausedMs+=Date.now()-FT.paused;FT.paused=null;wakeOn()}else{FT.paused=Date.now();wakeOff()}ftSave();render()}
 function ftFinish(silent){if(!FT)return;const e=ftElapsed();const min=FT.plan&&e>=FT.plan*60?FT.plan:Math.round(e/60);const k=keyOf(new Date(FT.start));const f=FT;FT=null;ftSave();wakeOff();
+  if(f.type==='pause'){render();if(!silent){beep();openSheet(`<span class="lab">Pause vorbei</span><div class="tn">Bereit für die nächste Runde?</div><div class="row"><button class="btn accent big" data-act="ft-again">Nächste Runde · ${FTYPES[ftType]} ${ftPlan||25} min</button><button class="btn" data-act="sheet-close">Später</button></div>`)}return}
   if(min>=1){const d=ensure(k);d.focus.push({t:f.type,min,pf:f.pf,int:f.ints,at:f.start});if(f.type==='lernen')d.brain.study+=min;if(f.type==='lesen')d.brain.read+=min;commit(k);
-    if(!silent){beep();openSheet(`<span class="lab">Session geschafft</span><div class="bignum" style="color:var(--good)">${min}<small style="font-size:.3em;color:var(--dim);margin-left:6px">min</small></div><div class="tn">${FTYPES[f.type]}${f.pf?' · handyfrei':''}</div><div class="hint">${f.type==='lernen'?'Zur Lernzeit addiert. ':f.type==='lesen'?'Zur Lesezeit addiert. ':''}${min>=20?'+'+(30+(f.pf?20:0))+' XP':'Ab 20 Minuten gibt es XP.'}${f.ints?` · ${f.ints} Unterbrechung${f.ints>1?'en':''}`:''}</div><div class="row"><button class="btn solid" data-act="sheet-close">Weiter</button></div>`)}}
+    if(!silent){beep();openSheet(`<span class="lab">Session geschafft</span><div class="bignum" style="color:var(--good)">${min}<small style="font-size:.3em;color:var(--dim);margin-left:6px">min</small></div><div class="tn">${FTYPES[f.type]}${f.pf?' · handyfrei':''}</div><p class="hint">${f.type==='lernen'?'Zur Lernzeit addiert. ':f.type==='lesen'?'Zur Lesezeit addiert. ':''}${min>=20?'+'+(30+(f.pf?20:0))+' XP':'Ab 20 Minuten gibt es XP.'}${f.ints?` · ${f.ints} Unterbrechung${f.ints>1?'en':''}`:''}</p><div class="row"><button class="btn accent big" data-act="ft-break">5 Min Pause</button><button class="btn" data-act="sheet-close">Fertig</button></div>`)}}
   else{toast('Unter einer Minute, nicht gespeichert.');render()}}
 function ftCheckReturn(){if(!FT||FT.paused)return;const gap=Date.now()-(FT.seen||Date.now());FT.seen=Date.now();ftSave();
-  if(gap>8000){openSheet(`<span class="lab">Willkommen zurück</span><div class="tn">Du warst ${Math.max(1,Math.round(gap/60000))} Min weg.</div><p class="hint">Warst du in der Zeit am Handy, oder war es nur gesperrt?</p><div class="row"><button class="btn solid" data-act="ft-locked">Nur gesperrt</button><button class="btn" data-act="ft-used">War am Handy</button></div>`);return true}
+  if(gap>8000&&FT.type!=='pause'){openSheet(`<span class="lab">Willkommen zurück</span><div class="tn">Du warst ${Math.max(1,Math.round(gap/60000))} Min weg.</div><p class="hint">Warst du in der Zeit am Handy, oder war es nur gesperrt?</p><div class="row"><button class="btn solid" data-act="ft-locked">Nur gesperrt</button><button class="btn" data-act="ft-used">War am Handy</button></div>`);return true}
   if(FT.plan&&ftElapsed()>=FT.plan*60)ftFinish()}
 function ftTick(){if(!FT)return;if(!FT.paused&&!document.hidden){FT.seen=Date.now();if(Date.now()%5000<1000)ftSave()}
   const el=$('#ftTime');if(el)el.textContent=ftClock();const p=$('#ftProg');if(p&&FT.plan)p.style.width=Math.min(100,ftElapsed()/(FT.plan*60)*100)+'%';
-  const ch=$('#ftChip');if(ch){ch.hidden=false;ch.textContent='◷ '+ftClock()}
+  const ch=$('#ftChip');if(ch){ch.hidden=false;ch.textContent=(FT.type==='pause'?'☕ ':'◷ ')+ftClock()}
   if(!FT.paused&&FT.plan&&ftElapsed()>=FT.plan*60&&$('#modal').hidden)ftFinish()}
 function renderFocus(){const d=get(today());const f=d.focus;const fm=sum(f.map(x=>x.min));
   let h=`<div class="ftbox">`;
-  if(FT){h+=`<span class="lab">${FTYPES[FT.type]}${FT.plan?' · '+FT.plan+' min':' · freie Zeit'}${FT.paused?' · pausiert':''}</span><div class="fttime" id="ftTime">${ftClock()}</div>${FT.plan?`<div class="pb"><i id="ftProg" style="width:${Math.min(100,ftElapsed()/(FT.plan*60)*100)}%"></i></div>`:''}
-    <p class="hint">Handy weglegen. Wenn du die App zwischendurch verlässt, frage ich dich danach, ob du am Handy warst.${FT.ints?` · ${FT.ints} Unterbrechung${FT.ints>1?'en':''}`:''}</p>
-    <div class="row c"><button class="btn solid big" data-act="ft-pause">${FT.paused?'Weiter':'Pause'}</button><button class="btn big" data-act="ft-stop">Beenden & speichern</button></div><button class="lnk" data-act="ft-cancel">Verwerfen</button>`}
-  else{h+=`<span class="lab">Fokus-Timer</span><div class="fttime idle">${pad2(ftPlan||0)}:00</div>
-    <div class="seg wide">${Object.keys(FTYPES).map(t=>`<button type="button" data-ftype="${t}" aria-pressed="${ftType===t}">${FTYPES[t]}</button>`).join('')}</div>
+  if(FT){h+=`<span class="lab">${FTYPES[FT.type]}${FT.plan?' · '+FT.plan+' min':' · freie Zeit'}${FT.paused?' · pausiert':''}</span><div class="fttime${FT.type==='pause'?' brk':''}" id="ftTime">${ftClock()}</div>${FT.plan?`<div class="pb"><i id="ftProg" style="width:${Math.min(100,ftElapsed()/(FT.plan*60)*100)}%"></i></div>`:''}
+    <p class="hint">${FT.type==='pause'?'Aufstehen, Wasser trinken, aus dem Fenster schauen. Nicht aufs Handy.':'Handy weglegen. Wenn du die App verlässt, frage ich danach, ob du am Handy warst.'}${FT.ints?` · ${FT.ints}× unterbrochen`:''}</p>
+    <div class="row c">${FT.type==='pause'?'<button class="btn solid big" data-act="ft-stop">Pause beenden</button>':`<button class="btn solid big" data-act="ft-pause">${FT.paused?'Weiter':'Pause'}</button><button class="btn big" data-act="ft-stop">Beenden & speichern</button>`}</div>${FT.type==='pause'?'':'<button class="lnk" data-act="ft-cancel">Verwerfen</button>'}`}
+  else{h+=`<span class="lab">Fokus-Timer</span><div class="fttime idle">${ftPlan?pad2(ftPlan)+':00':'∞'}</div>
+    <div class="seg wide">${['lernen','deep','lesen'].map(t=>`<button type="button" data-ftype="${t}" aria-pressed="${ftType===t}">${FTYPES[t]}</button>`).join('')}</div>
     <div class="seg wide">${[25,50,90,0].map(m=>`<button type="button" data-fdur="${m}" aria-pressed="${ftPlan===m}">${m?m+' min':'Frei'}</button>`).join('')}</div>
-    <button class="tog" data-act="awake" aria-pressed="${S.keepAwake}">Bildschirm anlassen</button>
-    <button class="btn accent big wide" data-act="ft-start">Start</button>`}
+    <button class="btn accent big wide" data-act="ft-start">Start</button><button class="tog sm" data-act="awake" aria-pressed="${S.keepAwake}">Bildschirm anlassen</button>`}
   h+=`</div>`;
-  h+=sec('Heute',`<div class="kvs">${kv('Deep-Work-Score',deepScore(d))}${kv('Fokuszeit',fmtDur(fm))}${kv('Handyfrei',fm?Math.round(sum(f.map(x=>x.pf?x.min:0))/fm*100)+' %':'–')}</div>
-    <div class="acts">${f.length?f.map((x,i)=>`<div class="act"><span class="ty">${FTYPES[x.t]}</span><span class="nm">${new Date(x.at||Date.now()).toTimeString().slice(0,5)} Uhr${x.pf?' · handyfrei':' · mit Handy'}${x.int?` · ${x.int}× unterbrochen`:''}</span><span class="num">${x.min} min</span><button class="x" data-fdel="${i}" aria-label="Session löschen">×</button></div>`).join(''):'<div class="hint">Noch keine Session heute. 25 Minuten sind ein guter Anfang.</div>'}</div>
-    <details class="more"><summary>Session ohne Timer nachtragen</summary><form class="addrow" id="fmanForm"><select class="in" id="fmType" aria-label="Art">${Object.keys(FTYPES).map(t=>`<option value="${t}">${FTYPES[t]}</option>`).join('')}</select><input class="in sm" id="fmMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><label class="ck"><input type="checkbox" id="fmPf" checked> handyfrei</label><button class="btn solid">+</button></form></details>`);
-  h+=sec('So funktioniert der Score',`<p class="hint">Der Deep-Work-Score zählt Fokuszeit (bis 2 h), den Anteil ohne Handy und deine längste Session. Unterbrechungen ziehen ab. Lern-Sessions landen automatisch in deiner Lernzeit, Lese-Sessions in der Lesezeit.</p>`);
+  h+=sec('Heute',`<div class="kvs">${kv('Deep Work',deepScore(d))}${kv('Fokuszeit',fmtDur(fm))}${kv('Handyfrei',fm?Math.round(sum(f.map(x=>x.pf?x.min:0))/fm*100)+' %':'–')}</div>
+    <div class="acts">${f.length?f.map((x,i)=>`<div class="act"><span class="ty">${FTYPES[x.t]}</span><span class="nm">${new Date(x.at||Date.now()).toTimeString().slice(0,5)}${x.pf?' · handyfrei':' · mit Handy'}</span><span class="num">${x.min} min</span><button class="x" data-fdel="${i}" aria-label="Session löschen">×</button></div>`).join(''):'<div class="hint">Noch keine Session heute. 25 Minuten sind ein guter Anfang.</div>'}</div>
+    ${fold('Session ohne Timer nachtragen',`<form class="addrow" id="fmanForm"><select class="in" id="fmType" aria-label="Art">${['lernen','deep','lesen'].map(t=>`<option value="${t}">${FTYPES[t]}</option>`).join('')}</select><input class="in sm" id="fmMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><label class="ck"><input type="checkbox" id="fmPf" checked> ohne Handy</label><button class="btn solid" aria-label="Nachtragen">+</button></form>`)}`);
+  h+=`<p class="hint">Deep-Work-Score: Fokuszeit bis 2 h, Anteil ohne Handy und längste Session. Unterbrechungen ziehen ab. Nach jeder Session kannst du eine 5-Minuten-Pause starten.</p>`;
   $('#v-focus').innerHTML=h}
-document.addEventListener('visibilitychange',()=>{if(document.hidden){if(FT&&!FT.paused){FT.seen=Date.now();ftSave()}}else{if(FT){ftCheckReturn();if(S.keepAwake&&!FT.paused)wakeOn()}}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){if(FT&&!FT.paused){FT.seen=Date.now();ftSave()}}else{if(FT){ftCheckReturn();if(S.keepAwake&&FT&&!FT.paused)wakeOn()}}});
 
 /* ---------- Spiele ---------- */
 function renderGames(){const t=today(),d=get(t),rec=records(),plan=workoutPlan(t);const done=Object.keys(d.workout).length;
-  let h=sec('Brain-Workout',`<p class="hint" style="margin-top:0">5 Spiele, etwa 10 Minuten. Jeden Tag eine neue Auswahl, mit ×1,2 XP.</p><div class="workout">${plan.map((s,i)=>`<button class="wrow${d.workout[i]!=null?' done':''}" data-g="${s.id}" data-slot="${i}"><span class="wl">${s.lab}</span><span class="wn">${GAME[s.id].name}</span><span class="wd">${s.dur}</span><span class="wx">${d.workout[i]!=null?'✓':'—'}</span></button>`).join('')}</div>
-    ${done<5?`<button class="btn accent big wide" data-act="workout">${done?'Weiter mit Spiel '+(plan.findIndex((s,j)=>d.workout[j]==null)+1)+'/5':'Workout starten'}</button>`:'<div class="note good">Workout für heute geschafft.</div>'}`,`<span class="val">${done}/5</span>`);
-  h+=`<div class="diffrow"><span class="lab">Schwierigkeit</span><div class="seg2">${[['easy','Leicht'],['normal','Normal'],['hard','Schwer'],['adaptive','Adaptiv']].map(([id,n])=>`<button data-diff="${id}" aria-pressed="${S.diff===id}">${n}</button>`).join('')}</div></div>
+  let h=sec('Brain-Workout',`<div class="workout">${plan.map((s,i)=>`<button class="wrow${d.workout[i]!=null?' done':''}" data-g="${s.id}" data-slot="${i}"><span class="wl">${s.lab}</span><span class="wn">${GAME[s.id].name}</span><span class="wx">${d.workout[i]!=null?'✓':s.dur}</span></button>`).join('')}</div>
+    ${done<5?`<button class="btn accent big wide" data-act="workout">${done?'Weiter mit Spiel '+(plan.findIndex((s,j)=>d.workout[j]==null)+1)+'/5':'Workout starten · 10 Min'}</button>`:'<div class="note good">Workout für heute geschafft.</div>'}`,`<span class="val">${done}/5</span>`);
+  h+=fold('Alle Spiele · '+GAMES.length,`<div class="diffrow"><span class="lab">Schwierigkeit</span><div class="seg2">${[['easy','Leicht'],['normal','Normal'],['hard','Schwer'],['adaptive','Adaptiv']].map(([id,n])=>`<button data-diff="${id}" aria-pressed="${S.diff===id}">${n}</button>`).join('')}</div></div>
    <div class="filters">${GCATS.map(([id,n])=>`<button data-f="${id}" aria-pressed="${gFilter===id}">${n}</button>`).join('')}</div>
-   <div class="gridg">${GAMES.filter(g=>gFilter==='all'||g.cat===gFilter).map(g=>{const gv=d.games[g.id];return`<button class="game${gv?' done':''}" data-g="${g.id}"><span class="lab">${GCATNAME[g.cat]} · ${DIFFN[diffLevel(g.id)]}</span><h3>${g.name}</h3><div class="gd">${g.desc}</div><div class="gs"><span>HEUTE<b>${gv?g.fmt(gv.v):'–'}</b></span><span class="rec">REKORD<b>${rec[g.id]!=null?g.fmt(rec[g.id]):'–'}</b></span></div></button>`}).join('')}</div>
-   <p class="hint">Brain-Spiele zählen im Bereich Gehirn mit. Pro Tag gibt es bis zu 1.500 XP aus Spielen.</p>`;
+   <div class="glist">${GAMES.filter(g=>gFilter==='all'||g.cat===gFilter).map(g=>{const gv=d.games[g.id];return`<button class="gi2${gv?' done':''}" data-g="${g.id}"><span class="gn"><b>${g.name}</b><small>${GCATNAME[g.cat]} · ${DIFFN[diffLevel(g.id)]}</small></span><span class="gv"><b>${gv?g.fmt(gv.v):'–'}</b><small>Rekord ${rec[g.id]!=null?g.fmt(rec[g.id]):'–'}</small></span></button>`}).join('')}</div>`,true);
+  h+=`<p class="hint">Brain-Spiele zählen im Bereich Lernen mit. Pro Tag gibt es bis zu 1.500 XP aus Spielen.</p>`;
   $('#v-games').innerHTML=h}
 
-/* ---------- Stats ---------- */
+/* ---------- Verlauf ---------- */
 const fillOf=s=>s==null?null:s>=90?'#B8E6C4':s>=75?'#7FB08E':s>=60?'#56705E':s>=40?'#8A6326':'#7A3B33';
 function barsSVG(vals,labels,o){const W=320,H=128,b=100,top=16;const max=Math.max(o.goal||0,...vals.map(v=>v||0),1)*1.12;const sl=W/vals.length;let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="${esc(o.label)}">`;
   if(o.goal){const y=b-(o.goal/max)*(b-top);s+=`<line x1="0" x2="${W}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}" stroke="var(--acc)" stroke-dasharray="3 4"/><text x="${W-2}" y="${(y-4).toFixed(1)}" text-anchor="end" font-size="9" font-family="Geist Mono, monospace" fill="var(--acc)">${o.goalLabel||'Ziel'} ${o.fmt(o.goal)}</text>`}
-  vals.forEach((v,i)=>{const x=i*sl+sl*.22,w=sl*.56,cx=(x+w/2).toFixed(1);if(v!=null&&v>0){const h=(v/max)*(b-top);s+=`<rect x="${x.toFixed(1)}" y="${(b-h).toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1.5,h).toFixed(1)}" rx="1.5" fill="${o.colorFn?o.colorFn(v):o.color}" fill-opacity="${i===vals.length-1?1:.78}"><title>${labels[i]}: ${o.fmt(v)}</title></rect><text x="${cx}" y="${(b-h-4).toFixed(1)}" text-anchor="middle" font-size="8.5" font-family="Geist Mono, monospace" fill="var(--dim)">${o.fmt(v)}</text>`}else s+=`<circle cx="${cx}" cy="${b-3}" r="1.5" fill="var(--faint)"/>`;
+  vals.forEach((v,i)=>{const x=i*sl+sl*.22,w=sl*.56,cx=(x+w/2).toFixed(1);if(v!=null&&v>0){const h=(v/max)*(b-top);s+=`<rect x="${x.toFixed(1)}" y="${(b-h).toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(1.5,h).toFixed(1)}" rx="1.5" fill="${o.colorFn?o.colorFn(v):o.color}" fill-opacity="${i===vals.length-1?1:.8}"><title>${labels[i]}: ${o.fmt(v)}</title></rect><text x="${cx}" y="${(b-h-4).toFixed(1)}" text-anchor="middle" font-size="8.5" font-family="Geist Mono, monospace" fill="var(--dim)">${o.fmt(v)}</text>`}else s+=`<circle cx="${cx}" cy="${b-3}" r="1.5" fill="var(--faint)"/>`;
     s+=`<text x="${cx}" y="${b+15}" text-anchor="middle" font-size="9" font-family="Geist Mono, monospace" fill="${i===vals.length-1?'var(--text)':'var(--faint)'}">${labels[i]}</text>`});
   return s+`<line x1="0" x2="${W}" y1="${b}" y2="${b}" stroke="var(--line2)"/></svg>`}
 function calHTML(){const t=today();const base=toDate(t);base.setDate(1);base.setMonth(base.getMonth()+monthOff);const y=base.getFullYear(),m=base.getMonth();const first=(base.getDay()+6)%7;const nd=new Date(y,m+1,0).getDate();
@@ -1851,50 +1997,64 @@ function calHTML(){const t=today();const base=toDate(t);base.setDate(1);base.set
   let c=`<div class="calh"><button class="ib" data-act="mprev" aria-label="Vorheriger Monat">‹</button><b>${MONTHS[m]} ${y}</b><button class="ib" data-act="mnext" aria-label="Nächster Monat"${monthOff>=0?' disabled':''}>›</button></div><div class="cal">${['Mo','Di','Mi','Do','Fr','Sa','So'].map(x=>`<span class="cwd">${x}</span>`).join('')}${'<span></span>'.repeat(first)}`;
   ks.forEach((k,i)=>{const s=scores(k).total;const f=fillOf(s);c+=`<button class="cday${k===t?' now':''}${k>t?' fut':''}" data-cal="${k}"${k>t?' disabled':''} style="${f?`background:${f};color:${s>=75?'#0B0C0E':'#E7E5E0'}`:''}"><span>${i+1}</span>${s!=null?`<small>${s}</small>`:''}</button>`});
   c+=`</div><div class="legend">${[['< 40','#7A3B33'],['40','#8A6326'],['60','#56705E'],['75','#7FB08E'],['90+','#B8E6C4']].map(([l,col])=>`<span><i style="background:${col}"></i>${l}</span>`).join('')}</div>
-   <div class="kvs">${kv('Ø Monat',vals.length?Math.round(avg(vals)):'–')}${kv('Bester Tag',vals.length?Math.max(...vals):'–')}${kv('Erfasst',vals.length+' Tage')}</div>`;return c}
+   <div class="kvs">${kv('Ø Monat',vals.length?Math.round(avg(vals)):'–')}${kv('Bester Tag',vals.length?Math.max(...vals):'–')}${kv('Erfasst',vals.length+' T.')}</div>`;return c}
 function recordsList(){const r={};const upd=(id,v,k,better)=>{if(v==null||!isFinite(v))return;if(!r[id]||better(v,r[id].v))r[id]={v,k}};const gt=(a,b)=>a>b,lt=(a,b)=>a<b;
   Object.keys(days).forEach(k=>{const d=get(k),s=scores(k);if(s.n>=2)upd('score',s.total,k,gt);upd('steps',d.sport.steps,k,gt);
     d.acts.forEach(a=>{if(a.type==='Lauf'){upd('run',a.km||null,k,gt);if(a.km>=3)upd('pace',a.min/a.km,k,lt)}upd('train',a.min,k,gt)});
     upd('study',d.brain.study||null,k,gt);d.focus.forEach(f=>upd('focus',f.min,k,gt));upd('sleep',sleepDur(d),k,gt);upd('screen',d.digital.screen,k,lt);upd('deep',deepScore(d)||null,k,gt)});
-  const L=[['score','Bester Life Score',v=>v],['study','Meiste Lernzeit',v=>fmtDur(v)],['focus','Längste Fokus-Session',v=>v+' min'],['deep','Bester Deep-Work-Score',v=>v],['steps','Meiste Schritte',v=>nf(v)],['run','Längster Lauf',v=>v.toFixed(1).replace('.',',')+' km'],['pace','Schnellste Pace (ab 3 km)',v=>Math.floor(v)+':'+pad2(Math.round(v%1*60))+' /km'],['train','Längstes Training',v=>v+' min'],['sleep','Längster Schlaf',v=>fmtMin(v)+' h'],['screen','Wenigste Bildschirmzeit',v=>fmtDur(v)]];
+  const L=[['score','Bester Life Score',v=>v],['study','Meiste Lernzeit',v=>fmtDur(v)],['focus','Längste Fokus-Session',v=>v+' min'],['deep','Bester Deep Work',v=>v],['steps','Meiste Schritte',v=>nf(v)],['run','Längster Lauf',v=>v.toFixed(1).replace('.',',')+' km'],['pace','Schnellste Pace ab 3 km',v=>Math.floor(v)+':'+pad2(Math.round(v%1*60))+' /km'],['train','Längstes Training',v=>v+' min'],['sleep','Längster Schlaf',v=>fmtMin(v)+' h'],['screen','Wenigste Bildschirmzeit',v=>fmtDur(v)]];
   const lr=[['life','Längste Life-Streak'],['study','Längste Lern-Streak'],['train','Längste Trainings-Streak'],['sleep','Längste Schlaf-Streak']].map(([id,n])=>[n,bestRun(STREAKS.find(s=>s.id===id).f)]);
   return L.map(([id,n,f])=>`<div class="pbr${r[id]?'':' none'}"><span class="nm">${n}</span><span class="v">${r[id]?f(r[id].v):'–'}</span><span class="dt">${r[id]?dShort(r[id].k):'noch kein Wert'}</span></div>`).join('')+lr.map(([n,v])=>`<div class="pbr${v?'':' none'}"><span class="nm">${n}</span><span class="v">${v||'–'}</span><span class="dt">${v?'Tage':'noch keine'}</span></div>`).join('')}
-function renderStats(){const t=today();const ks=lastN(t,7);const lab=ks.map(k=>WD[toDate(k).getDay()]);const D=ks.map(get);const prev=lastN(addDays(t,-7),7).map(get);
-  const sl=D.map(sleepDur);const slv=sl.filter(x=>x!=null);const beds=D.map(d=>tmin(d.sleep.bed)).filter(x=>x!=null).map(bedN);const cons=consistency(t);
-  const spM=D.map(sportMin),pvM=sum(prev.map(sportMin));const stM=D.map(d=>d.brain.study||null);const sc=D.map(d=>d.digital.screen);const scv=sc.filter(x=>x!=null);const av30=avgBack(t,y=>y.digital.screen,30);
-  let h=sec('Monatskalender',calHTML());
-  h+=sec('Life Score · 7 Tage',barsSVG(ks.map(k=>scores(k).total),lab,{label:'Life Score',fmt:v=>v,colorFn:v=>fillOf(v)}));
-  h+=sec('Schlaf · 7 Tage',barsSVG(sl,lab,{label:'Schlafdauer',goal:S.goals.sleep,fmt:v=>fmtMin(v),colorFn:v=>v>=S.goals.sleep?'var(--good)':v>=S.goals.sleep-60?'var(--acc)':'var(--bad)'})+`<div class="kvs">${kv('Ø Dauer',slv.length?fmtMin(avg(slv))+' h':'–')}${kv('Ø ins Bett',beds.length?fmtClock(avg(beds)-720):'–')}${kv('Konsistenz',cons?cons.score:'–')}</div>`);
-  h+=sec('Sport · 7 Tage',barsSVG(spM.map(v=>v||null),lab,{label:'Sportminuten',goal:S.goals.sport,fmt:v=>v,color:'#9FCBAA'})+`<div class="kvs">${kv('Sportzeit',sum(spM)+' min',pvM?(sum(spM)>=pvM?'+':'−')+Math.abs(sum(spM)-pvM)+' min vs. Vorwoche':'')}${kv('Trainings',sum(D.map(d=>d.acts.length)))}${kv('Laufen',sum(D.map(runKm)).toFixed(1).replace('.',',')+' km')}${kv('Schritte',nf(sum(D.map(d=>d.sport.steps||0))))}</div>`);
-  h+=sec('Lernen · 7 Tage',barsSVG(stM,lab,{label:'Lernzeit',goal:S.goals.study,fmt:v=>v,color:'#B9A3FF'})+`<div class="kvs">${kv('Gesamt',fmtMin(sum(stM.map(v=>v||0)))+' h','Wochenziel '+fmtMin(S.goals.studyWeek)+' h')}${kv('Fokus-Sessions',sum(D.map(d=>d.focus.length)))}${kv('Gelesen',sum(D.map(d=>d.brain.read))+' min')}</div>`);
-  h+=sec('Bildschirmzeit · 7 Tage',barsSVG(sc,lab,{label:'Bildschirmzeit',goal:S.goals.screen,goalLabel:'Limit',fmt:v=>fmtMin(v),colorFn:v=>v>S.goals.screen?'var(--bad)':'var(--dim)'})+`<div class="kvs">${kv('Ø diese 7 Tage',scv.length?fmtMin(avg(scv))+' h':'–')}${kv('Ø 30 Tage',av30!=null?fmtMin(av30)+' h':'–')}${kv('Shorts gesamt',sum(D.map(d=>d.digital.shorts||0))+' min')}</div>`);
-  h+=sec('Persönliche Rekorde',`<div class="pbs">${recordsList()}</div>`);
+const CHARTS={score:'Score',sleep:'Schlaf',sport:'Sport',study:'Lernen',screen:'Handy',feel:'Stimmung'};
+function chartHTML(){const t=today();const ks=lastN(t,7);const lab=ks.map(k=>WD[toDate(k).getDay()]);const D=ks.map(get);const g=S.goals;
+  if(chartSel==='score')return barsSVG(ks.map(k=>scores(k).total),lab,{label:'Life Score',fmt:v=>v,colorFn:v=>fillOf(v)});
+  if(chartSel==='sleep'){const sl=D.map(sleepDur);const slv=sl.filter(x=>x!=null);const beds=D.map(d=>tmin(d.sleep.bed)).filter(x=>x!=null).map(bedN);const cons=consistency(t);
+    return barsSVG(sl,lab,{label:'Schlafdauer',goal:g.sleep,fmt:v=>fmtMin(v),colorFn:v=>v>=g.sleep?'var(--good)':v>=g.sleep-60?'var(--acc)':'var(--bad)'})+`<div class="kvs">${kv('Ø Dauer',slv.length?fmtMin(avg(slv))+' h':'–')}${kv('Ø ins Bett',beds.length?fmtClock(avg(beds)-720):'–')}${kv('Konsistenz',cons?cons.score:'–')}</div>`}
+  if(chartSel==='sport'){const m=D.map(sportMin);const pv=sum(lastN(addDays(t,-7),7).map(get).map(sportMin));
+    return barsSVG(m.map(v=>v||null),lab,{label:'Sportminuten',goal:g.sport,fmt:v=>v,color:'#9FCBAA'})+`<div class="kvs">${kv('Sportzeit',sum(m)+' min',pv?(sum(m)>=pv?'+':'−')+Math.abs(sum(m)-pv)+' vs. Vorwoche':'')}${kv('Laufen',sum(D.map(runKm)).toFixed(1).replace('.',',')+' km')}${kv('Schritte',nf(sum(D.map(d=>d.sport.steps||0))))}</div>`}
+  if(chartSel==='study'){const m=D.map(d=>d.brain.study||null);return barsSVG(m,lab,{label:'Lernzeit',goal:g.study,fmt:v=>v,color:'#B9A3FF'})+`<div class="kvs">${kv('Gesamt',fmtMin(sum(m.map(v=>v||0)))+' h','Ziel '+fmtMin(g.studyWeek)+' h')}${kv('Sessions',sum(D.map(d=>d.focus.length)))}${kv('Gelesen',sum(D.map(d=>d.brain.read))+' min')}</div>`}
+  if(chartSel==='screen'){const s=D.map(d=>d.digital.screen);const sv=s.filter(x=>x!=null);const a30=avgBack(t,y=>y.digital.screen,30);return barsSVG(s,lab,{label:'Bildschirmzeit',goal:g.screen,goalLabel:'Limit',fmt:v=>fmtMin(v),colorFn:v=>v>g.screen?'var(--bad)':'var(--dim)'})+`<div class="kvs">${kv('Ø 7 Tage',sv.length?fmtMin(avg(sv))+' h':'–')}${kv('Ø 30 Tage',a30!=null?fmtMin(a30)+' h':'–')}${kv('Shorts',sum(D.map(d=>d.digital.shorts||0))+' min')}</div>`}
+  const e=D.map(d=>d.feel.energy),dy=D.map(d=>d.feel.day);const f1=a=>a.filter(x=>x);const fa=a=>f1(a).length?avg(f1(a)).toFixed(1).replace('.',','):'–';
+  return barsSVG(dy,lab,{label:'Tagesbewertung',fmt:v=>v,color:'#F0A73C'})+`<div class="kvs">${kv('Ø Tag',fa(dy),'von 5')}${kv('Ø Energie',fa(e),'von 5')}${kv('Ø Stimmung',fa(D.map(d=>d.feel.mood)),'morgens')}</div>`}
+function renderStats(){const wc=weekCompare();const ins=insights();const t=today();
+  const a=avg(wc.a.total),b=avg(wc.b.total);const arrow=(x,y)=>x==null||y==null?'':x>=y?`<i class="up">▲ ${Math.round(x-y)}</i>`:`<i class="dn">▼ ${Math.round(y-x)}</i>`;
+  let h=sec('Diese Woche',`<div class="wk"><div class="wka"><span class="lab">Ø Life Score</span><b style="color:${zone(a==null?null:Math.round(a))}">${a==null?'–':Math.round(a)}</b>${arrow(a,b)}<small>${b==null?'Vorwoche: keine Daten':'Vorwoche '+Math.round(b)}</small></div>
+    <div class="wkc">${CATS.map(c=>{const x=avg(wc.a.cats[c.id]),y=avg(wc.b.cats[c.id]);return`<div class="wkr"><span class="cd" style="background:${c.col}"></span><span>${c.name}</span><b>${x==null?'–':Math.round(x)}</b>${arrow(x,y)}</div>`}).join('')}</div></div>`,`<span class="val">KW ${isoWeek()[1]}</span>`);
+  h+=sec('Was dir gut tut',ins.few?`<p class="hint">Ab 7 erfassten Tagen siehst du hier Muster aus deinen Daten (${ins.n}/7). Mach dafür am besten jeden Abend den Check-in.</p>`:ins.list.length?ins.list.map(x=>`<div class="ins">${x.t}</div>`).join('')+'<p class="hint">Zusammenhänge aus deinen eigenen Daten. Kein Beweis, aber ein guter Hinweis.</p>':'<p class="hint">Noch keine klaren Muster. Je mehr Tage, desto genauer.</p>');
+  h+=sec('Letzte 7 Tage',`<div class="filters">${Object.keys(CHARTS).map(id=>`<button data-chart="${id}" aria-pressed="${chartSel===id}">${CHARTS[id]}</button>`).join('')}</div>${chartHTML()}`);
+  h+=sec('Kalender',calHTML());
+  const jr=lastN(t,30).reverse().map(k=>[k,get(k).journal]).filter(([,j])=>j.line||j.grat);
+  h+=fold('Tagebuch · '+jr.length,jr.length?jr.map(([k,j])=>`<div class="jr"><span class="lab">${dayLabel(k)}</span>${j.line?`<p>${esc(j.line)}</p>`:''}${j.grat?`<small>Dankbar für: ${esc(j.grat)}</small>`:''}</div>`).join(''):'<p class="hint">Im Abend-Check-in schreibst du einen Satz zum Tag. Die landen hier.</p>');
+  h+=fold('Persönliche Rekorde',`<div class="pbs">${recordsList()}</div>`);
   $('#v-stats').innerHTML=h}
 
 /* ---------- Profil ---------- */
-function renderProfile(){const xp=totalXP(),L=lvlOf(xp),a=xpAt(L),b=xpAt(Math.min(100,L+1));const ws=weekStartKey();const wq=weeklyQuests(ws);const[y,w]=isoWeek();const as=achState();const dt=detoxState(S.detox);
+function renderProfile(){const xp=totalXP(),L=lvlOf(xp),a=xpAt(L),b=xpAt(Math.min(100,L+1));const wq=weeklyQuests(weekStartKey());const as=achState();const dt=detoxState(S.detox);const okA=as.filter(x=>x.ok);
   let h=`<div class="lvbox"><span class="lab">Level</span><div class="lvbig">${L}<small>/ 100 · ${titleOf(L)}</small></div>${bar(L>=100?1:(xp-a)/(b-a))}<div class="hint">${L>=100?'Maximal-Level erreicht.':nf(b-xp)+' XP bis Level '+(L+1)} · ${nf(xp)} XP gesamt</div></div>`;
-  h+=sec('Streaks',`<div class="streaks">${STREAKS.map(s=>`<div class="stk"><b>${streakOf(s.f)}</b><span>${s.name}</span><small>${s.sub} · Rekord ${bestRun(s.f)}</small></div>`).join('')}</div>`);
-  h+=sec('Wochenquests',wq.map(x=>`<div class="quest${x.done?' ok':''}"><span class="qc">${x.done?'✓':''}</span><span class="qt">${esc(x.q.t())}<span class="qp">${bar(x.cur/x.q.goal)}<small>${nf(x.cur)} / ${nf(x.q.goal)}</small></span></span><span class="qx">+500 XP</span></div>`).join('')+(dt?`<div class="quest"><span class="qc"></span><span class="qt">${DETOX[S.detox.type].t}<span class="qp">${bar(dt.st.filter(s=>s==='ok').length/7)}<small>${dt.st.filter(s=>s==='ok').length} / 7 Tage</small></span></span><span class="qx">+1.000 XP</span></div>`:''),`<span class="val">KW ${w}</span>`);
-  h+=sec('Achievements',`<div class="ach">${as.map(x=>`<div class="ac${x.ok?' ok':''}"><b>${esc(x.m)}</b><span class="an">${esc(x.n)}</span><span class="ad">${esc(x.d)}</span>${!x.ok&&x.goal>1?bar(x.cur/x.goal):''}</div>`).join('')}</div>`,`<span class="val">${as.filter(x=>x.ok).length}/${as.length}</span>`);
+  h+=`<div class="streaks">${STREAKS.map(s=>`<div class="stk"><b>${streakOf(s.f)}</b><span>${s.name}</span><small>Rekord ${bestRun(s.f)}</small></div>`).join('')}</div>`;
+  h+=sec('Wochenquests',wq.map(x=>`<div class="quest${x.done?' ok':''}"><span class="qc">${x.done?'✓':''}</span><span class="qt">${esc(x.q.t())}<span class="qp">${bar(x.cur/x.q.goal)}<small>${nf(x.cur)} / ${nf(x.q.goal)}</small></span></span><span class="qx">+500</span></div>`).join('')+(dt?`<div class="quest"><span class="qc"></span><span class="qt">${DETOX[S.detox.type].t}<span class="qp">${bar(dt.st.filter(s=>s==='ok').length/7)}<small>${dt.st.filter(s=>s==='ok').length} / 7 Tage</small></span></span><span class="qx">+1.000</span></div>`:''),`<span class="val">KW ${isoWeek()[1]}</span>`);
+  h+=fold(`Achievements · ${okA.length}/${as.length}`,`<div class="ach">${as.map(x=>`<div class="ac${x.ok?' ok':''}"><b>${esc(x.m)}</b><span class="an">${esc(x.n)}</span><span class="ad">${esc(x.d)}</span>${!x.ok&&x.goal>1?bar(x.cur/x.goal):''}</div>`).join('')}</div>`);
   const g=S.goals;const gi=(key,label,val,unit,step,mult)=>`<label class="gl"><span>${label}</span><span class="gi"><input class="in" type="number" inputmode="decimal" step="${step}" min="0" data-goal="${key}" data-mult="${mult}" value="${+(val/mult).toFixed(2)}"><small>${unit}</small></span></label>`;
-  h+=sec('Ziele',`<div class="goals">${gi('study','Lernzeit pro Tag',g.study,'min',5,1)}${gi('studyWeek','Lernzeit pro Woche',g.studyWeek,'h',.5,60)}${gi('sleep','Schlafziel',g.sleep,'h',.25,60)}${gi('steps','Schritte pro Tag',g.steps,'Schritte',500,1)}${gi('sport','Sportzeit pro Tag',g.sport,'min',5,1)}${gi('screen','Bildschirm-Limit',g.screen,'h',.25,60)}</div><p class="hint">Für Jugendliche werden 8–10 Stunden Schlaf empfohlen.</p>`);
-  h+=sec('Routinen',`<label class="gl col"><span>Morgenroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="morning">${esc(S.morning.join('\n'))}</textarea></label><label class="gl col"><span>Abendroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="evening">${esc(S.evening.join('\n'))}</textarea></label>`);
-  h+=sec('Daten',`<p class="hint" style="margin-top:0">Alles bleibt auf diesem iPhone. Mach ab und zu ein Backup.</p><div class="row"><button class="btn solid" data-act="bk-save">Backup speichern</button><button class="btn" data-act="bk-load">Backup laden</button><button class="btn" data-act="import">Strava / Garmin importieren</button></div><div class="hint" id="impRes">${Object.keys(days).filter(k=>scores(k).n).length} Tage gespeichert.</div>
-    <details class="more"><summary>Was kann ich importieren?</summary><ul class="hint"><li><b>Strava:</b> Aktivität im Browser → „⋯“ → GPX exportieren, oder das ganze Konto-Archiv als ZIP.</li><li><b>Garmin Connect:</b> Aktivität → Zahnrad → Original exportieren (FIT), Schlaf-Export als CSV oder der komplette Datenexport als ZIP.</li><li>Importiert werden Trainings, Schritte, Schlafdauer, Schlafscore, Ruhepuls, Body Battery und Stress der letzten 120 Tage.</li></ul></details>`);
+  h+=fold('Ziele',`<div class="goals">${gi('study','Lernzeit pro Tag',g.study,'min',5,1)}${gi('studyWeek','Lernzeit pro Woche',g.studyWeek,'h',.5,60)}${gi('sleep','Schlafziel',g.sleep,'h',.25,60)}${gi('steps','Schritte pro Tag',g.steps,'Schritte',500,1)}${gi('sport','Sportzeit pro Tag',g.sport,'min',5,1)}${gi('screen','Bildschirm-Limit',g.screen,'h',.25,60)}</div><p class="hint">Für Jugendliche werden 8–10 Stunden Schlaf empfohlen.</p>`);
+  h+=fold('Routinen',`<label class="gl col"><span>Morgenroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="morning">${esc(S.morning.join('\n'))}</textarea></label><label class="gl col"><span>Abendroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="evening">${esc(S.evening.join('\n'))}</textarea></label>`);
+  h+=fold('Daten & Import',`<p class="hint">Alles bleibt auf diesem iPhone. Mach ab und zu ein Backup.</p><div class="row"><button class="btn solid" data-act="bk-save">Backup speichern</button><button class="btn" data-act="bk-load">Backup laden</button><button class="btn" data-act="import">Strava / Garmin</button></div><div class="hint" id="impRes">${Object.keys(days).filter(k=>scores(k).n).length} Tage gespeichert.</div>
+    <ul class="hint"><li><b>Strava:</b> Aktivität im Browser → „⋯“ → GPX exportieren, oder das Konto-Archiv als ZIP.</li><li><b>Garmin Connect:</b> Aktivität → Zahnrad → Original exportieren (FIT), Schlaf-CSV oder der komplette Datenexport als ZIP.</li></ul>`);
+  h+=fold('So wird gerechnet',`<ul class="hint"><li>Jeder Bereich hat einen Score von 0–100. Der Life Score ist der Durchschnitt aller erfassten Bereiche (Lernen 22 %, Schlaf 22 %, Sport 20 %, Alltag 20 %, Digital 16 %).</li><li>Leere Bereiche zählen nicht mit. Ab 3 erfassten Bereichen ist der Score aussagekräftig.</li><li>Stimmung, Energie und Tagebuch zählen nicht in den Score. Sie fließen nur in „Was dir gut tut“ ein.</li><li>XP gibt es für gute Entscheidungen, Quests, Check-ins und den Tagesabschluss. Level 100 ist ungefähr ein Jahr konsequentes Dranbleiben.</li></ul>`);
   $('#v-prof').innerHTML=h}
 
 /* ================= Eingaben ================= */
-const LIMITS={'brain.study':1440,'brain.tasks':500,'brain.read':1440,'brain.anki':5000,'sport.steps':100000,'sleep.score':100,'sleep.rhr':150,'sleep.bb':100,'sleep.stress':100,'digital.screen':1440,'digital.social':1440,'digital.shorts':1440,'digital.pickups':3000,'digital.fmode':1440};
+const LIMITS={'brain.study':1440,'brain.tasks':500,'brain.read':1440,'brain.anki':5000,'sport.steps':100000,'sport.water':30,'sleep.score':100,'sleep.rhr':150,'sleep.bb':100,'sleep.stress':100,'digital.screen':1440,'digital.social':1440,'digital.shorts':1440,'digital.pickups':3000,'digital.fmode':1440};
+const TEXTP={'life.goal':120,'journal.line':280,'journal.grat':200};
 const getP=(d,p)=>{const[a,b]=p.split('.');return d[a][b]};
 const setP=(d,p,v)=>{const[a,b]=p.split('.');d[a][b]=v};
 function parseNumIn(v){v=String(v).trim();if(!v)return null;if(/^\d{1,2}:\d{2}$/.test(v))return tmin(v);const n=parseFloat(v.replace(/\./g,'').replace(',','.'));return isFinite(n)?Math.round(n):null}
 function onInput(el){const p=el.dataset.path;const d=ensure(cur);
   if(p==='sleep.bed'||p==='sleep.wake'){setP(d,p,tmin(el.value)!=null?el.value:'');commit();return}
-  if(p==='life.goal'){d.life.goal=el.value.slice(0,120);commit();return}
+  if(TEXTP[p]){setP(d,p,el.value.slice(0,TEXTP[p]));commit();return}
   let v=parseNumIn(el.value);if(v!=null)v=clamp(v,0,LIMITS[p]||100000);if(v==null&&p.startsWith('brain.'))v=0;setP(d,p,v);commit()}
 document.addEventListener('change',e=>{const el=e.target;
   if(el.matches('[data-path]'))onInput(el);
+  else if(el.matches('[data-swake]')){if(tmin(el.value)!=null){S.wakeTarget=el.value;sSave();render()}}
   else if(el.matches('[data-goal]')){const v=parseFloat(String(el.value).replace(',','.'));if(isFinite(v)&&v>0){S.goals[el.dataset.goal]=Math.round(v*(+el.dataset.mult||1));sSave();render();toast('Ziel gespeichert.')}}
   else if(el.matches('[data-routine]')){const items=el.value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,12);S[el.dataset.routine]=items.map(x=>x.slice(0,60));sSave();toast('Routine gespeichert.')}
   else if(el.id==='file'){const f=[...el.files];el.value='';if(f.length)importFiles(f)}});
@@ -1902,13 +2062,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('in
 document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;const d=ensure(cur);
   if(f.id==='taskForm'){const v=$('#taskIn').value.trim();if(!v)return;d.life.tasks.push({id:'t'+Date.now().toString(36),t:v.slice(0,100),p:2,top:d.life.tasks.filter(t=>t.top).length<3&&d.life.tasks.length<3,done:false});commit();const i=$('#taskIn');if(i)i.focus()}
   else if(f.id==='actForm'){const m=parseNumIn($('#aMin').value);if(!m){toast('Trag die Minuten ein.');return}const km=parseFloat(String($('#aKm').value).replace(',','.'))||0;const type=$('#aType').value;
-    d.acts.push({id:'man|'+Date.now(),type,name:type==='Workout'?'Krafttraining':type,min:clamp(m,1,600),km:clamp(km,0,500),src:'manuell'});d.sport.rest=false;commit();toast(type==='Workout'?'Krafttraining eingetragen.':type+' eingetragen.')}
+    d.acts.push({id:'man|'+Date.now(),type,name:type==='Workout'?'Krafttraining':type,min:clamp(m,1,600),km:clamp(km,0,500),src:'manuell'});d.sport.rest=false;commit();toast((type==='Workout'?'Krafttraining':type)+' eingetragen.')}
   else if(f.id==='fmanForm'){const m=parseNumIn($('#fmMin').value);if(!m){toast('Trag die Minuten ein.');return}const t=$('#fmType').value;const k=today();const dd=ensure(k);dd.focus.push({t,min:clamp(m,1,600),pf:$('#fmPf').checked,int:0,at:Date.now()});if(t==='lernen')dd.brain.study+=m;if(t==='lesen')dd.brain.read+=m;commit(k);toast('Session nachgetragen.')}});
 document.addEventListener('click',e=>{const T=e.target;let el;
-  if((el=T.closest('#modal'))&&T===el){closeSheet();return}
+  if((el=T.closest('#modal'))&&T===el){if(SHEET&&SHEET.kind==='ci')return;closeSheet();render();return}
   if((el=T.closest('[data-step]'))){const p=el.dataset.step;const d=ensure(cur);const v=getP(d,p);const nv=clamp((v||0)+(+el.dataset.d),0,LIMITS[p]||100000);setP(d,p,nv);commit();return}
   if((el=T.closest('[data-tog]'))){const p=el.dataset.tog;const d=ensure(cur);const val=el.dataset.v==='1';setP(d,p,getP(d,p)===val?null:val);commit();return}
-  if((el=T.closest('[data-cat]'))){openCat=openCat===el.dataset.cat?null:el.dataset.cat;render();if(openCat){const c=el.closest('.cat');if(c&&c.scrollIntoView)c.scrollIntoView({block:'start',behavior:'smooth'})}return}
+  if((el=T.closest('[data-feel]'))){const d=ensure(cur);const k2=el.dataset.feel,v=+el.dataset.v;d.feel[k2]=d.feel[k2]===v?null:v;commit();return}
+  if((el=T.closest('[data-cat]'))){openCat(el.dataset.cat);return}
   if((el=T.closest('[data-rt]'))){const d=ensure(cur);const w=el.dataset.rt;const it=S[w][+el.dataset.ri];if(d.life[w][it])delete d.life[w][it];else d.life[w][it]=true;commit();return}
   if((el=T.closest('[data-ta]'))){const d=ensure(cur);const t=d.life.tasks.find(x=>x.id===el.dataset.tid);if(!t)return;const a=el.dataset.ta;
     if(a==='done')t.done=!t.done;else if(a==='prio')t.p=t.p%3+1;else if(a==='del')d.life.tasks=d.life.tasks.filter(x=>x!==t);else if(a==='top'){if(!t.top&&d.life.tasks.filter(x=>x.top).length>=3){toast('Maximal 3 Top-Aufgaben.');return}t.top=!t.top}commit();return}
@@ -1917,20 +2078,23 @@ document.addEventListener('click',e=>{const T=e.target;let el;
   if((el=T.closest('[data-fdel]'))){const k=today();const d=ensure(k);const f=d.focus[+el.dataset.fdel];if(!f)return;if(f.t==='lernen')d.brain.study=Math.max(0,d.brain.study-f.min);if(f.t==='lesen')d.brain.read=Math.max(0,d.brain.read-f.min);d.focus.splice(+el.dataset.fdel,1);commit(k);return}
   if((el=T.closest('[data-ftype]'))){ftType=el.dataset.ftype;render();return}
   if((el=T.closest('[data-fdur]'))){ftPlan=+el.dataset.fdur;render();return}
+  if((el=T.closest('[data-chart]'))){chartSel=el.dataset.chart;render();return}
   if((el=T.closest('[data-cal]'))){cur=el.dataset.cal;setTab('today');return}
   if((el=T.closest('[data-diff]'))){S.diff=el.dataset.diff;sSave();render();return}
   if((el=T.closest('[data-f]'))){gFilter=el.dataset.f;render();return}
   if((el=T.closest('[data-g]'))){const s=el.dataset.slot;if(s!=null&&get(today()).workout[s]==null){const p=workoutPlan(today())[+s];openGame(p.id,{slot:+s,sec:p.sec})}else openGame(el.dataset.g);return}
-  if((el=T.closest('[data-tab]'))){setTab(el.dataset.tab);return}
+  if((el=T.closest('[data-tab]'))){closeSheet();setTab(el.dataset.tab);return}
   if(!(el=T.closest('[data-act]')))return;const a=el.dataset.act;const t=today();
   if(a==='prev'){cur=addDays(cur,-1);render()}
   else if(a==='next'){if(cur<t){cur=addDays(cur,1);render()}}
-  else if(a==='today'){cur=t;render()}
   else if(a==='close')closeDaySheet();
   else if(a==='close-confirm'){ensure(cur).closed=true;commit();closeDaySheet();toast('Tag abgeschlossen. Gute Nacht.')}
   else if(a==='sheet-close'){closeSheet();render()}
-  else if(a==='gofocus')setTab('focus');
-  else if(a==='gogames')setTab('games');
+  else if(a==='ci-am'||a==='ci-pm')openCheckin(a.slice(3));
+  else if(a==='ci-next'){const C=CI[SHEET.type];if(SHEET.step<C.steps.length-1){SHEET.step++;renderSheet(true)}else{const d=ensure(cur);d.checkin[SHEET.type]=true;const ty=SHEET.type;SHEET=null;commit();if(ty==='pm')closeDaySheet();else{closeSheet();toast('Morgen-Check-in erledigt · +50 XP')}}}
+  else if(a==='ci-back'){if(SHEET.step>0){SHEET.step--;renderSheet(true)}}
+  else if(a==='gofocus'){closeSheet();setTab('focus')}
+  else if(a==='gogames'){closeSheet();setTab('games')}
   else if(a==='workout')startWorkout();
   else if(a==='rest'){const d=ensure(cur);d.sport.rest=!d.sport.rest;commit()}
   else if(a==='carry'){const d=ensure(cur);get(addDays(cur,-1)).life.tasks.filter(x=>!x.done&&!d.life.tasks.some(y=>y.t===x.t)).forEach(x=>d.life.tasks.push({id:'t'+Math.random().toString(36).slice(2,9),t:x.t,p:x.p,top:x.top,done:false}));commit()}
@@ -1939,6 +2103,8 @@ document.addEventListener('click',e=>{const T=e.target;let el;
   else if(a==='ft-start')ftStart();
   else if(a==='ft-pause')ftPause();
   else if(a==='ft-stop')ftFinish();
+  else if(a==='ft-break'){closeSheet();ftStart('pause',5);setTab('focus')}
+  else if(a==='ft-again'){closeSheet();ftStart(ftType,ftPlan||25);setTab('focus')}
   else if(a==='ft-cancel'){FT=null;ftSave();wakeOff();render();toast('Session verworfen.')}
   else if(a==='ft-locked'){closeSheet();if(FT&&FT.plan&&ftElapsed()>=FT.plan*60)ftFinish();else render()}
   else if(a==='ft-used'){if(FT){FT.ints++;FT.pf=false;ftSave()}closeSheet();if(FT&&FT.plan&&ftElapsed()>=FT.plan*60)ftFinish();else render()}
@@ -1951,7 +2117,7 @@ document.addEventListener('click',e=>{const T=e.target;let el;
 $('#stQuit').addEventListener('click',closeStage);
 
 /* ================= Import & Backup ================= */
-async function importFiles(files){const imgs=files.filter(f=>/^image\//.test(f.type));if(imgs.length&&imgs.length===files.length){toast('Screenshots kann nur die Claude-Version auslesen.');return}
+async function importFiles(files){const imgs=files.filter(f=>/^image\//.test(f.type));if(imgs.length&&imgs.length===files.length){toast('Screenshots kann die App nicht auslesen. Bitte Datei-Export nutzen.');return}
   toast('Lese '+files.length+' Datei'+(files.length>1?'en':'')+' …');const res={acts:[],metrics:[],zips:0,errors:0,skipped:0};
   for(const f of files){if(/^image\//.test(f.type))continue;try{await handleEntry(f.name,()=>f.arrayBuffer(),res,0)}catch(e){res.errors++}}
   applyImport(res)}
@@ -1971,8 +2137,8 @@ function applyImport(res){const out=$('#impRes');const msg=m=>{toast(m);if(out)o
   const p=[];if(nA)p.push(nA+' Training'+(nA>1?'s':''));if(nS)p.push(nS+' Schlafnacht'+(nS>1?'e':''));if(nB)p.push(nB+' Tag'+(nB>1?'e':'')+' Körperdaten');
   if(p.length)msg('Importiert: '+p.join(' · ')+'.');else if(!res.backup)msg(res.acts.length||res.metrics.length?'Nichts Neues gefunden.':res.errors?'Datei konnte nicht gelesen werden. Erwartet: FIT, GPX, TCX, CSV, JSON oder ZIP.':'Keine Trainings oder Schlafdaten erkannt.')}
 function backupJSON(){return JSON.stringify({brainmaxxBackup:2,app:'lifemaxx',exported:new Date().toISOString(),days,settings:S})}
-async function saveBackup(){const name='brainmaxx-backup-'+today()+'.json';const json=backupJSON();
-  try{const file=new File([json],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Brainmaxx Backup'});toast('Backup bereit. In „Dateien“ sichern.');return}}catch(e){if(e&&e.name==='AbortError')return}
+async function saveBackup(){const name='lifemaxx-backup-'+today()+'.json';const json=backupJSON();
+  try{const file=new File([json],name,{type:'application/json'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Lifemaxx Backup'});toast('Backup bereit. In „Dateien“ sichern.');return}}catch(e){if(e&&e.name==='AbortError')return}
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([json],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);toast('Backup gespeichert.')}
 
 /* ================= Start ================= */
