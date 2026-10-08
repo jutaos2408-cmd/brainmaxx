@@ -736,6 +736,51 @@ details.more ul{padding-left:18px;line-height:1.55}
 .gi .in{width:96px;text-align:right;font-family:var(--f-mono)}
 .gi small{font-family:var(--f-mono);font-size:10.5px;color:var(--faint);width:56px}
 .toast{bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:50}
+
+/* ---- Quests & Menüs ---- */
+.mq{display:flex;flex-direction:column;gap:9px;border:1px solid var(--line2);border-left:2px solid var(--acc);border-radius:4px 12px 12px 4px;background:var(--panel);padding:13px 14px;text-align:left;width:100%}
+.mq.full{gap:12px;padding:16px}
+.mq.empty{border-style:dashed;border-left:2px solid var(--acc);align-items:flex-start}
+.mq.empty b{font-size:16px;font-weight:600}
+.mq.empty small{color:var(--faint);font-size:12px}
+.mqh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;width:100%;text-align:left}
+.mqh .lab{color:var(--acc)}
+.mqh .val{font-family:var(--f-mono);font-size:11.5px;color:var(--dim)}
+.mqt{font-size:17px;font-weight:600;line-height:1.3;text-align:left;color:var(--text);letter-spacing:-.01em}
+.mq.full .mqt{font-size:21px}
+.why{margin:0;color:var(--dim);font-size:13.5px;line-height:1.45}
+.mqs{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:center;text-align:left;border-top:1px solid var(--line);padding-top:9px;font-size:14px;width:100%}
+.mqs small{display:block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.04em;color:var(--faint);margin-bottom:2px}
+.tk{display:grid;place-items:center;flex:none}
+.tk.on{background:var(--good);border-color:var(--good)}
+.steps{display:flex;flex-direction:column}
+.step,.sq{display:grid;grid-template-columns:30px minmax(0,1fr) auto 26px;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+.step .qx,.sq .qx{font-family:var(--f-mono);font-size:11px;color:var(--faint)}
+.step.done .tk,.sq.done .tk{background:var(--good);border-color:var(--good)}
+.step.done .tt,.sq.done .tt{color:var(--faint);text-decoration:line-through}
+.sq .tt small,.step .tt small{display:block;font-family:var(--f-mono);font-size:10.5px;color:var(--faint);margin-top:1px}
+.sq .tt small.bad{color:var(--bad)}
+.sz{height:26px;padding:0 8px;border-radius:5px;font-family:var(--f-mono);font-size:10.5px;border:1px solid var(--line2);color:var(--dim);white-space:nowrap}
+.sz.s2{color:var(--acc);border-color:rgba(240,167,60,.45)}
+.sz.s3{color:var(--bg);background:var(--acc);border-color:var(--acc)}
+.sugg{display:grid;grid-template-columns:minmax(0,1fr) auto 22px;gap:10px;align-items:center;width:100%;text-align:left;border:1px dashed var(--line2);border-radius:8px;padding:9px 11px;font-size:13.5px;color:var(--dim)}
+.sugg small{font-family:var(--f-mono);font-size:10.5px;color:var(--faint)}
+.sugg i{font-style:normal;color:var(--acc);font-size:18px;text-align:center}
+.qsum{display:flex;align-items:center;gap:14px;width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--dim);text-align:left}
+.qsum b{color:var(--text);font-family:var(--f-mono);font-weight:500}
+.qsum i{margin-left:auto;font-style:normal;color:var(--faint);font-size:18px}
+.menu{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mrow{display:flex;align-items:center;gap:10px;width:100%;padding:14px;border-top:1px solid var(--line);text-align:left;font-size:14.5px;background:var(--bg)}
+.mrow:first-child{border-top:0}
+.mrow small{margin-left:auto;font-family:var(--f-mono);font-size:12px;color:var(--faint)}
+.mrow i{font-style:normal;color:var(--faint);font-size:18px;margin-left:4px}
+.mrow:not(:has(small)) i{margin-left:auto}
+.achrow{display:flex;gap:8px;flex-wrap:wrap}
+.acm{min-width:40px;height:40px;padding:0 8px;border:1px solid var(--line2);border-radius:10px;display:grid;place-items:center;font-size:18px}
+.mqf{display:flex;flex-direction:column;gap:12px}
+.mqf textarea.in{height:auto;min-height:110px;padding:10px 11px;line-height:1.45;resize:vertical;font-family:inherit}
+.bad{color:var(--bad)}
+.stage .sb{justify-content:flex-start;padding-top:min(6vh,40px);min-height:0}
 </style>
 
 <div class="app">
@@ -745,8 +790,9 @@ details.more ul{padding-left:18px;line-height:1.55}
   </header>
   <main>
     <section class="view" id="v-today"></section>
+    <section class="view" id="v-quests" hidden></section>
     <section class="view" id="v-focus" hidden></section>
-    <section class="view" id="v-games" hidden></section>
+    
     <section class="view" id="v-stats" hidden></section>
     <section class="view" id="v-prof" hidden></section>
   </main>
@@ -754,8 +800,8 @@ details.more ul{padding-left:18px;line-height:1.55}
 
 <nav class="tabbar" aria-label="Bereiche"><div>
   <button id="tb-today" data-tab="today" aria-current="page"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg>Heute</button>
+  <button id="tb-quests" data-tab="quests" aria-current="false"><svg viewBox="0 0 24 24"><path d="M5 21V3.5"/><path d="M5 4h12.5l-2.5 4 2.5 4H5"/></svg>Quests</button>
   <button id="tb-focus" data-tab="focus" aria-current="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="3"/><path d="M12 2.5v3"/></svg>Fokus</button>
-  <button id="tb-games" data-tab="games" aria-current="false"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><circle cx="17" cy="17" r="3.5"/></svg>Spiele</button>
   <button id="tb-stats" data-tab="stats" aria-current="false"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Stats</button>
   <button id="tb-prof" data-tab="prof" aria-current="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="4"/><path d="M4 21c1.2-4 4.3-6 8-6s6.8 2 8 6"/></svg>Profil</button>
 </div></nav>
@@ -800,6 +846,7 @@ function seeded(s){let h=hashStr(s)||1;return()=>{h=Math.imul(h^(h>>>15),2246822
 const N=v=>typeof v==='number'&&isFinite(v)?v:null;
 const B=v=>typeof v==='boolean'?v:null;
 const Str=(v,n)=>typeof v==='string'?v.slice(0,n||200):'';
+const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
 let tt=null;function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,3000)}
 
 /* ================= Einstellungen ================= */
@@ -807,7 +854,7 @@ const LS='lifemaxx-v2',LSS='lifemaxx-settings-v2';
 const DEF_S=()=>({goals:{study:60,studyWeek:300,sleep:480,steps:10000,sport:45,screen:180},
   morning:['Ohne Snooze aufstehen','Glas Wasser','Bett machen','Frühstück','Tag planen'],
   evening:['Tasche für morgen packen','Handy ab 22 Uhr weg','10 Minuten lesen','Top 3 für morgen notieren'],
-  detox:null,detoxDone:[],diff:'adaptive',adapt:{},ach:[],keepAwake:true,wakeTarget:'06:45',updated:0});
+  detox:null,detoxDone:[],diff:'adaptive',adapt:{},ach:[],keepAwake:true,wakeTarget:'06:45',mains:[],side:[],sugOff:0,updated:0});
 let S=DEF_S();
 function sNorm(o){const s=DEF_S();if(!o||typeof o!=='object')return s;
   if(o.goals)Object.keys(s.goals).forEach(k=>{const v=N(o.goals[k]);if(v!=null&&v>=0)s.goals[k]=v});
@@ -817,7 +864,13 @@ function sNorm(o){const s=DEF_S();if(!o||typeof o!=='object')return s;
   if(['easy','normal','hard','adaptive'].includes(o.diff))s.diff=o.diff;
   if(o.adapt&&typeof o.adapt==='object')s.adapt=o.adapt;
   if(Array.isArray(o.ach))s.ach=o.ach.slice(0,200);
-  if(typeof o.keepAwake==='boolean')s.keepAwake=o.keepAwake;if(tmin(o.wakeTarget)!=null)s.wakeTarget=o.wakeTarget;
+  if(typeof o.keepAwake==='boolean')s.keepAwake=o.keepAwake;
+  if(Array.isArray(o.mains))s.mains=o.mains.filter(m=>m&&typeof m.title==='string').slice(0,50).map(m=>({id:Str(m.id,40)||uid(),title:m.title.slice(0,100),why:Str(m.why,200),deadline:/^\d{4}-\d{2}-\d{2}$/.test(m.deadline)?m.deadline:'',daily:Str(m.daily,80),
+    steps:Array.isArray(m.steps)?m.steps.filter(x=>x&&typeof x.t==='string').slice(0,40).map(x=>({id:Str(x.id,40)||uid(),t:x.t.slice(0,100),done:!!x.done,doneAt:/^\d{4}-\d{2}-\d{2}$/.test(x.doneAt)?x.doneAt:''})):[],
+    log:(m.log&&typeof m.log==='object')?Object.fromEntries(Object.keys(m.log).filter(k=>/^\d{4}-\d{2}-\d{2}$/.test(k)&&m.log[k]===true).map(k=>[k,true])):{},
+    status:['active','done','dropped'].includes(m.status)?m.status:'active',created:Str(m.created,10),doneAt:/^\d{4}-\d{2}-\d{2}$/.test(m.doneAt)?m.doneAt:''}));
+  if(Array.isArray(o.side))s.side=o.side.filter(q=>q&&typeof q.t==='string').slice(0,200).map(q=>({id:Str(q.id,40)||uid(),t:q.t.slice(0,100),size:[1,2,3].includes(q.size)?q.size:1,deadline:/^\d{4}-\d{2}-\d{2}$/.test(q.deadline)?q.deadline:'',done:!!q.done,doneAt:/^\d{4}-\d{2}-\d{2}$/.test(q.doneAt)?q.doneAt:'',created:Str(q.created,10)}));
+  s.sugOff=+o.sugOff||0;if(tmin(o.wakeTarget)!=null)s.wakeTarget=o.wakeTarget;
   s.updated=+o.updated||0;return s}
 function sSave(){S.updated=Date.now();try{localStorage.setItem(LSS,JSON.stringify(S))}catch(e){}invalidate()}
 
@@ -1015,6 +1068,7 @@ function dayXP(k){const d=get(k);if(d===EMPTY)return 0;const b=d.brain;let x=0;
   const q=dailyQuests(k).filter(q=>q.f(d)).length;x+=q*100+(q===3?150:0);
   if(d.checkin.am)x+=50;if(d.checkin.pm)x+=50;if((d.sport.water||0)>=8)x+=20;if(d.journal.line.trim())x+=20;if(d.feel.mood||d.feel.energy||d.feel.day)x+=10;
   x+=d.gxp;if(d.closed){const s=scores(k).total;if(s!=null)x+=s*3}
+  x+=questXPOn(k);
   return Math.round(x)}
 function totalXP(){if(XPC)return XPC;let x=0;const weeks=new Set();Object.keys(days).forEach(k=>{x+=dayXP(k);weeks.add(weekStartKey(k))});
   weeks.forEach(ws=>{weeklyQuests(ws).forEach(w=>{if(w.done)x+=500})});x+=S.detoxDone.length*1000;XPC=x;return x}
@@ -1023,12 +1077,24 @@ const xpAt=L=>30*(L-1)*(L-1);
 const TITLES=[[100,'Final Boss'],[90,'Brainmaxxed'],[75,'Legende'],[60,'Mastermind'],[45,'Stratege'],[30,'Disziplin-Maschine'],[20,'Grinder'],[10,'Lernender'],[5,'Rookie'],[1,'NPC']];
 const titleOf=L=>TITLES.find(([l])=>L>=l)[1];
 
+/* ================= Main & Side Quests ================= */
+const SIDE_XP=[0,100,250,500],SIDE_N=['','S','M','L'];
+const MAIN_STEP_XP=100,MAIN_DONE_XP=1500,MAIN_DAILY_XP=50;
+const activeMain=()=>S.mains.find(m=>m.status==='active')||null;
+function questXPOn(k){let x=0;S.side.forEach(q=>{if(q.done&&q.doneAt===k)x+=SIDE_XP[q.size]});
+  S.mains.forEach(m=>{m.steps.forEach(s=>{if(s.done&&s.doneAt===k)x+=MAIN_STEP_XP});if(m.log[k])x+=MAIN_DAILY_XP;if(m.status==='done'&&m.doneAt===k)x+=MAIN_DONE_XP});return x}
+function mainProgress(m){const n=m.steps.length;const d=m.steps.filter(s=>s.done).length;return{n,d,f:n?d/n:0,next:m.steps.find(s=>!s.done)||null}}
+function mainDailyStreak(m){let k=today();if(!m.log[k])k=addDays(k,-1);let n=0;while(m.log[k]&&n<3650){n++;k=addDays(k,-1)}return n}
+function daysLeft(k){if(!k)return null;return Math.round((toDate(k)-toDate(today()))/864e5)}
+const SIDE_SUGG=[['Einen Tag komplett ohne Short-Videos',2],['Ein Kapitel in einem Sachbuch lesen',1],['Eine alte Klausur nachrechnen',2],['Ein neues Rezept kochen',1],['Jemandem schreiben, der dir wichtig ist',1],['Eine Stunde draußen, ohne Kopfhörer',1],['Schreibtisch und Rucksack komplett ausmisten',2],['Eine neue Laufstrecke ausprobieren',1],['Tischtennis: 100 Aufschläge üben',1],['Handy einen Abend in einen anderen Raum legen',2],['Vor 22:30 schlafen gehen',1],['Lernplan für die nächste Klausur schreiben',2],['Ein Tutorial nachbauen statt nur anschauen',2],['An einem Nachmittag ein kleines Programmier-Projekt bauen',3],['5 km am Stück laufen',2],['Zuhause beim Kochen oder Einkaufen helfen',1],['Etwas reparieren, das lange kaputt ist',2],['Fotos auf dem Handy aufräumen',1],['Apps löschen, die du 30 Tage nicht genutzt hast',1],['20 Vokabeln lernen und morgen abfragen lassen',1],['Mit Freunden rausgehen statt zocken',1],['Eine Karte oder einen Brief per Hand schreiben',1],['Ein Referat laut vor dem Spiegel üben',2],['Einen ganzen Tag alle Mahlzeiten selbst machen',2],['Eine Stunde etwas völlig Neues lernen',2],['Ein angefangenes Buch zu Ende lesen',3],['30 Liegestütze am Stück schaffen',3],['Einen Nachmittag komplett offline verbringen',3],['Den Kleiderschrank ausmisten',2],['Eine Woche jeden Tag 10 Minuten dehnen',3]];
+function sideSuggestions(){const r=seeded('sg'+today()+'|'+S.sugOff);const open=new Set(S.side.map(q=>q.t));const pool=SIDE_SUGG.filter(([t])=>!open.has(t));const out=[];while(out.length<3&&pool.length)out.push(pool.splice(Math.floor(r()*pool.length),1)[0]);return out}
+
 /* ================= Achievements ================= */
 function lifeStats(){const ks=Object.keys(days);const st={study:0,focus:0,steps:0,km:0,train:0,tasks:0,closed:0,best:0,five:false,deep90:false,first:0,cons90:false,games:0,morning:0,logged:0,bestStreak:0,checkins:0,journal:0};
   ks.forEach(k=>{const d=get(k);const s=scores(k);if(s.n)st.logged++;st.study+=d.brain.study;st.focus+=d.focus.length;st.steps+=d.sport.steps||0;st.km+=runKm(d);st.train+=d.acts.length;st.tasks+=d.life.tasks.filter(t=>t.done).length;
     if(d.closed)st.closed++;if(s.total!=null&&s.n>=2)st.best=Math.max(st.best,s.total);if(s.n===5)st.five=true;if(deepScore(d)>=90)st.deep90=true;if(d.digital.first)st.first++;
     const c=s.c.sleep.cons;if(c&&c.n>=5&&c.score>=90)st.cons90=true;st.games+=sum(Object.values(d.games).map(g=>g.n||1));if(routineRate(d,'morning')===1)st.morning++;st.checkins+=(d.checkin.am?1:0)+(d.checkin.pm?1:0);if(d.journal.line.trim())st.journal++});
-  st.lifeRun=bestRun(STREAKS[0].f);st.sleepRun=bestRun(STREAKS[3].f);st.level=lvlOf(totalXP());st.detox=S.detoxDone.length;return st}
+  st.mainDone=S.mains.filter(m=>m.status==='done').length;st.sideDone=S.side.filter(q=>q.done).length;st.lifeRun=bestRun(STREAKS[0].f);st.sleepRun=bestRun(STREAKS[3].f);st.level=lvlOf(totalXP());st.detox=S.detoxDone.length;return st}
 const ACH=[
  ['start','Erster Eintrag','Den ersten Tag erfasst','01',s=>[s.logged,1]],
  ['five','Rundum erfasst','Alle 5 Bereiche an einem Tag','5/5',s=>[s.five?1:0,1]],
@@ -1053,6 +1119,9 @@ const ACH=[
  ['ci14','Routine-Profi','14 Check-ins gemacht','CI',s=>[s.checkins,14]],
  ['jour7','Tagebuch','7 Tage einen Satz geschrieben','✎',s=>[s.journal,7]],
  ['g25','Brain-Gamer','25 Brain-Spiele gespielt','G25',s=>[s.games,25]],
+ ['main1','Hauptquest','Eine Main Quest abgeschlossen','MQ',s=>[s.mainDone,1]],
+ ['main3','Kampagne','3 Main Quests abgeschlossen','MQ3',s=>[s.mainDone,3]],
+ ['side10','Abenteurer','10 Side Quests erledigt','SQ',s=>[s.sideDone,10]],
  ['lv10','Level 10','Level 10 erreicht','L10',s=>[s.level,10]],
  ['lv25','Level 25','Level 25 erreicht','L25',s=>[s.level,25]],
  ['lv50','Level 50','Level 50 erreicht','L50',s=>[s.level,50]],
@@ -1782,12 +1851,12 @@ async function handleEntry(name,getBuf,res,depth){
 }
 
 /* ================= Oberfläche ================= */
-const TABS=['today','focus','games','stats','prof'];
+const TABS=['today','quests','focus','stats','prof'];
 let tab='today',monthOff=0,gFilter='all',chartSel='score',SHEET=null;
 function setTab(t){if(!TABS.includes(t))t='today';tab=t;
   TABS.forEach(x=>{$('#v-'+x).hidden=x!==t;$('#tb-'+x).setAttribute('aria-current',x===t?'page':'false')});
   try{localStorage.setItem('lifemaxx-tab',t)}catch(e){}render();window.scrollTo(0,0)}
-function render(){renderTop();({today:renderToday,focus:renderFocus,games:renderGames,stats:renderStats,prof:renderProfile})[tab]();if(SHEET&&SHEET.kind!=='static')renderSheet()}
+function render(){renderTop();({today:renderToday,quests:renderQuests,focus:renderFocus,stats:renderStats,prof:renderProfile})[tab]();if(SHEET&&SHEET.kind!=='static')renderSheet()}
 function commit(k){save(k||cur);render();checkDetox();checkAch()}
 
 /* ---------- Bausteine ---------- */
@@ -1821,18 +1890,34 @@ function nextStep(k,d,sc){const t=today();if(k!==t)return null;const h=new Date(
   const q=dailyQuests(k).find(q=>!q.f(d));if(q)return{t:'Offene Quest: <b>'+esc(q.t())+'</b>',b:null};
   if(d.sport.steps!=null&&d.sport.steps<g.steps)return{t:`Noch <b>${nf(g.steps-d.sport.steps)}</b> Schritte bis zum Ziel.`,b:null};
   return{t:'Alles im Plan. Stark.',b:null}}
+function mainCard(compact){const m=activeMain();
+  if(!m)return compact?`<button class="mq empty" data-tab="quests"><span class="lab">Main Quest</span><b>Setz dir ein großes Ziel</b><small>z. B. „Mathe-Klausur: 13 Punkte“ oder „10 km unter 50 Minuten“</small></button>`:'';
+  const p=mainProgress(m);const dl=daysLeft(m.deadline);const t=today();
+  const dlT=dl==null?'':dl<0?`<span class="bad">${-dl} Tage überfällig</span>`:dl===0?'<span class="bad">heute fällig</span>':`noch ${dl} Tag${dl===1?'':'e'}`;
+  if(compact)return`<div class="mq"><button class="mqh" data-tab="quests"><span class="lab">Main Quest</span><span class="val">${p.n?p.d+'/'+p.n:''}${p.n&&dlT?' · ':''}${dlT}</span></button><button class="mqt" data-tab="quests">${esc(m.title)}</button>${p.n?bar(p.f,'var(--acc)'):''}
+    ${p.next?`<button class="mqs" data-mq="step" data-sid="${p.next.id}"><span class="tk"></span><span><small>Nächster Schritt</small>${esc(p.next.t)}</span></button>`:''}
+    ${m.daily?`<button class="mqs" data-mq="daily"><span class="tk${m.log[t]?' on':''}">${m.log[t]?'✓':''}</span><span><small>Heute · ${streakT(mainDailyStreak(m))}</small>${esc(m.daily)}</span></button>`:''}</div>`;
+  return`<div class="mq full"><div class="mqh"><span class="lab">Main Quest</span><span class="val">${dlT}</span></div><b class="mqt">${esc(m.title)}</b>${m.why?`<p class="why">${esc(m.why)}</p>`:''}
+    ${p.n?`<div class="prog"><div class="pl"><span>Fortschritt</span><b>${p.d}/${p.n} Schritte · ${Math.round(p.f*100)} %</b></div>${bar(p.f,'var(--acc)')}</div>`:''}
+    <div class="steps">${m.steps.map(s=>`<div class="step${s.done?' done':''}"><button class="tk" data-mq="step" data-sid="${s.id}" aria-label="erledigt">${s.done?'✓':''}</button><span class="tt">${esc(s.t)}</span><span class="qx">+${MAIN_STEP_XP}</span><button class="x" data-mq="delstep" data-sid="${s.id}" aria-label="Schritt löschen">×</button></div>`).join('')}</div>
+    <form class="addrow" id="mqStepForm"><input class="in wide" id="mqStepIn" maxlength="100" placeholder="Schritt hinzufügen …" enterkeyhint="done"><button class="btn solid" aria-label="Schritt hinzufügen">+</button></form>
+    ${m.daily?`<button class="mqs" data-mq="daily"><span class="tk${m.log[t]?' on':''}">${m.log[t]?'✓':''}</span><span><small>Tägliche Aktion · ${streakT(mainDailyStreak(m))} · +${MAIN_DAILY_XP} XP</small>${esc(m.daily)}</span></button>`:''}
+    <div class="row">${(!p.n||p.d===p.n)?`<button class="btn accent" data-mq="complete">Quest abschließen · +${nf(MAIN_DONE_XP)} XP</button>`:''}<button class="btn" data-page="main">Bearbeiten</button><button class="lnk" data-mq="drop">${dropArmed?'Wirklich aufgeben?':'Aufgeben'}</button></div></div>`}
+let dropArmed=false;
+const streakT=n=>n===1?'1 Tag Streak':n+' Tage Streak';
 function renderToday(){const k=cur,t=today(),d=get(k),sc=scores(k),tot=sc.total;
   const[tn,tr]=tot!=null?tier(tot):['Noch leer','Mach einen Check-in oder tipp auf einen Ring.'];
   const rkT=rankText(rankOf(k));const col=zone(tot);const lit=tot!=null?Math.round(tot/2.5):0;
-  const qs=dailyQuests(k);const qd=qs.filter(q=>q.f(d)).length;const ns=nextStep(k,d,sc);
+  const qs=dailyQuests(k);const qd=qs.filter(q=>q.f(d)).length;const ns=nextStep(k,d,sc);const so=S.side.filter(q=>!q.done).length;
   let h=`<div class="dnav"><button class="ib" data-act="prev" aria-label="Vorheriger Tag">‹</button><span>${dayLabel(k)}</span><button class="ib" data-act="next" aria-label="Nächster Tag"${k>=t?' disabled':''}>›</button></div>
   <div class="hero"><div><span class="lab">Life Score</span><div class="bignum" style="color:${col}">${tot??'–'}</div></div>
     <div class="hr"><div class="tn">${tn}</div><div class="trm">${tr}</div>${rkT?`<div class="rk">${rkT}</div>`:''}</div></div>
   <div class="dots">${[...Array(40)].map((_,i)=>`<i${i<lit?` style="background:${col}"`:''}></i>`).join('')}</div>
-  <div class="rings">${CATS.map(c=>{const x=sc.c[c.id];return`<button class="rg" data-cat="${c.id}" aria-label="${c.name} bearbeiten">${ring(x.has?x.score:null,c.col)}<b style="color:${x.has?'var(--text)':'var(--faint)'}">${x.has?x.score:'–'}</b><span>${c.name}</span></button>`}).join('')}</div>
-  <div class="cis"><button class="ci${d.checkin.am?' done':''}" data-act="ci-am"><span>☀</span><b>Morgen-Check-in</b><small>${d.checkin.am?'erledigt':'1 Min'}</small></button><button class="ci${d.checkin.pm?' done':''}" data-act="ci-pm"><span>☾</span><b>Abend-Check-in</b><small>${d.checkin.pm?'erledigt':'2 Min'}</small></button></div>`;
+  <div class="rings">${CATS.map(c=>{const x=sc.c[c.id];return`<button class="rg" data-cat="${c.id}" aria-label="${c.name} bearbeiten">${ring(x.has?x.score:null,c.col)}<b style="color:${x.has?'var(--text)':'var(--faint)'}">${x.has?x.score:'–'}</b><span>${c.name}</span></button>`}).join('')}</div>`;
+  if(k===t)h+=mainCard(true);
+  h+=`<div class="cis"><button class="ci${d.checkin.am?' done':''}" data-act="ci-am"><span>☀</span><b>Morgen-Check-in</b><small>${d.checkin.am?'erledigt':'1 Min'}</small></button><button class="ci${d.checkin.pm?' done':''}" data-act="ci-pm"><span>☾</span><b>Abend-Check-in</b><small>${d.checkin.pm?'erledigt':'2 Min'}</small></button></div>`;
   if(ns)h+=`<div class="next"><span class="lab">Als Nächstes</span><p>${ns.t}</p>${ns.b?`<button class="btn solid" data-act="${ns.b[1]}">${ns.b[0]}</button>`:''}</div>`;
-  h+=sec('Daily Quests',qs.map(q=>{const ok=q.f(d);return`<div class="quest${ok?' ok':''}"><span class="qc">${ok?'✓':''}</span><span class="qt">${esc(q.t())}</span><span class="qx">+100</span></div>`}).join(''),`<span class="val">${qd}/3${qd===3?' · +150 Bonus':''}</span>`);
+  h+=`<button class="qsum" data-tab="quests"><span>Daily <b>${qd}/3</b></span><span>Side Quests <b>${so}</b> offen</span><i>›</i></button>`;
   if(sc.n)h+=`<button class="btn ${d.closed?'':'accent '}big wide" data-act="close">${d.closed?'Tagesabschluss ansehen':'Tag abschließen · +'+((tot||0)*3)+' XP'}</button>`;
   $('#v-today').innerHTML=h;
 }
@@ -1911,9 +1996,36 @@ const CI={
   {t:'Abendroutine',f:d=>routineBlock(d,'evening')+fld('Letzte Stunde vor dem Schlafen handyfrei?','',tri('digital.last',d.digital.last,'Ja, mach ich','Nein'))},
   {t:'Wie war dein Tag?',f:d=>fld('Bewertung','',feel('day',d.feel.day))+fld('Ein Satz zum Tag','',`<input class="in wide" data-path="journal.line" maxlength="280" value="${esc(d.journal.line)}" placeholder="Heute war …" enterkeyhint="done">`)+fld('Dankbar für','optional',`<input class="in wide" data-path="journal.grat" maxlength="200" value="${esc(d.journal.grat)}" placeholder="…" enterkeyhint="done">`)},
   {t:'Morgen früh',f:()=>bedCalc()+'<p class="hint">Danach kommt dein Tagesabschluss.</p>'}]}};
+function openPage(id){SHEET={kind:'page',id};$('#modal').hidden=false;renderSheet(true)}
+const menuRow=(id,label,val)=>`<button class="mrow" data-page="${id}"><span>${label}</span>${val!=null?`<small>${val}</small>`:''}<i>›</i></button>`;
+const PAGES={
+ ach:{t:'Achievements',f(){const as=achState();return`<div class="ach">${as.map(x=>`<div class="ac${x.ok?' ok':''}"><b>${esc(x.m)}</b><span class="an">${esc(x.n)}</span><span class="ad">${esc(x.d)}</span>${!x.ok&&x.goal>1?bar(x.cur/x.goal):''}</div>`).join('')}</div>`}},
+ goals:{t:'Ziele',f(){const g=S.goals;const gi=(key,label,val,unit,step,mult)=>`<label class="gl"><span>${label}</span><span class="gi"><input class="in" type="number" inputmode="decimal" step="${step}" min="0" data-goal="${key}" data-mult="${mult}" value="${+(val/mult).toFixed(2)}"><small>${unit}</small></span></label>`;
+   return`<div class="goals">${gi('study','Lernzeit pro Tag',g.study,'min',5,1)}${gi('studyWeek','Lernzeit pro Woche',g.studyWeek,'h',.5,60)}${gi('sleep','Schlafziel',g.sleep,'h',.25,60)}${gi('steps','Schritte pro Tag',g.steps,'Schritte',500,1)}${gi('sport','Sportzeit pro Tag',g.sport,'min',5,1)}${gi('screen','Bildschirm-Limit',g.screen,'h',.25,60)}</div><p class="hint">Für Jugendliche werden 8–10 Stunden Schlaf empfohlen.</p>`}},
+ routines:{t:'Routinen',f(){return`<label class="gl col"><span>Morgenroutine · ein Punkt pro Zeile</span><textarea class="in" rows="6" data-routine="morning">${esc(S.morning.join('\n'))}</textarea></label><label class="gl col"><span>Abendroutine · ein Punkt pro Zeile</span><textarea class="in" rows="6" data-routine="evening">${esc(S.evening.join('\n'))}</textarea></label>`}},
+ data:{t:'Daten & Backup',f(){return`<p class="hint">Alles bleibt auf diesem iPhone. Mach ab und zu ein Backup.</p><div class="row"><button class="btn solid" data-act="bk-save">Backup speichern</button><button class="btn" data-act="bk-load">Backup laden</button></div><div class="row"><button class="btn" data-act="import">Strava / Garmin importieren</button></div><div class="hint" id="impRes">${Object.keys(days).filter(k=>scores(k).n).length} Tage gespeichert.</div>
+   <ul class="hint"><li><b>Strava:</b> Aktivität im Browser → „⋯“ → GPX exportieren, oder das Konto-Archiv als ZIP.</li><li><b>Garmin Connect:</b> Aktivität → Zahnrad → Original exportieren (FIT), Schlaf-CSV oder der komplette Datenexport als ZIP.</li></ul>`}},
+ calc:{t:'So wird gerechnet',f(){return`<ul class="hint lst"><li>Jeder Bereich hat einen Score von 0–100. Der Life Score ist der Durchschnitt aller erfassten Bereiche (Lernen 22 %, Schlaf 22 %, Sport 20 %, Alltag 20 %, Digital 16 %).</li><li>Leere Bereiche zählen nicht mit. Ab 3 erfassten Bereichen ist der Score aussagekräftig.</li><li>Stimmung, Energie und Tagebuch zählen nicht in den Score, sondern nur in „Was dir gut tut“.</li><li>XP gibt es für gute Entscheidungen, Check-ins, Quests und den Tagesabschluss. Main-Quest-Schritt +${MAIN_STEP_XP}, Main Quest geschafft +${nf(MAIN_DONE_XP)}, tägliche Aktion +${MAIN_DAILY_XP}, Side Quest S/M/L +100/250/500.</li><li>Level 100 ist ungefähr ein Jahr konsequentes Dranbleiben.</li></ul>`}},
+ journal:{t:'Tagebuch',f(){const jr=lastN(today(),60).reverse().map(k=>[k,get(k).journal]).filter(([,j])=>j.line||j.grat);return jr.length?jr.map(([k,j])=>`<div class="jr"><span class="lab">${dayLabel(k)}</span>${j.line?`<p>${esc(j.line)}</p>`:''}${j.grat?`<small>Dankbar für: ${esc(j.grat)}</small>`:''}</div>`).join(''):'<p class="hint">Im Abend-Check-in schreibst du einen Satz zum Tag. Die landen hier.</p>'}},
+ records:{t:'Persönliche Rekorde',f(){return`<div class="pbs">${recordsList()}</div>`}},
+ fman:{t:'Session nachtragen',f(){return`<form class="addrow" id="fmanForm"><select class="in" id="fmType" aria-label="Art">${['lernen','deep','lesen'].map(t=>`<option value="${t}">${FTYPES[t]}</option>`).join('')}</select><input class="in sm" id="fmMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><label class="ck"><input type="checkbox" id="fmPf" checked> ohne Handy</label><button class="btn solid" aria-label="Nachtragen">+</button></form><p class="hint">Für Lern- oder Lesezeit ohne Timer, zum Beispiel in der Bibliothek.</p>`}},
+ games:{t:'Alle Brain-Spiele',f(){const d=get(today()),rec=records();return`<div class="diffrow"><span class="lab">Schwierigkeit</span><div class="seg2">${[['easy','Leicht'],['normal','Normal'],['hard','Schwer'],['adaptive','Adaptiv']].map(([id,n])=>`<button data-diff="${id}" aria-pressed="${S.diff===id}">${n}</button>`).join('')}</div></div>
+   <div class="filters">${GCATS.map(([id,n])=>`<button data-f="${id}" aria-pressed="${gFilter===id}">${n}</button>`).join('')}</div>
+   <div class="glist">${GAMES.filter(g=>gFilter==='all'||g.cat===gFilter).map(g=>{const gv=d.games[g.id];return`<button class="gi2${gv?' done':''}" data-g="${g.id}"><span class="gn"><b>${g.name}</b><small>${GCATNAME[g.cat]} · ${DIFFN[diffLevel(g.id)]}</small></span><span class="gv"><b>${gv?g.fmt(gv.v):'–'}</b><small>Rekord ${rec[g.id]!=null?g.fmt(rec[g.id]):'–'}</small></span></button>`}).join('')}</div>`}},
+ main:{t:'Main Quest',f(){const m=activeMain();const v=m||{title:'',why:'',deadline:'',daily:'',steps:[]};
+   return`<form id="mqForm" class="mqf">${fld('Dein großes Ziel','Was willst du erreichen?',`<input class="in wide" id="mqTitle" maxlength="100" value="${esc(v.title)}" placeholder="z. B. Mathe-Klausur: 13 Punkte" required>`)}
+     ${fld('Warum ist dir das wichtig?','optional, hilft an schlechten Tagen',`<input class="in wide" id="mqWhy" maxlength="200" value="${esc(v.why)}" placeholder="z. B. Für den Abi-Schnitt">`)}
+     <div class="grid2">${fld('Deadline','optional',`<input class="in wide" type="date" id="mqDl" style="width:100%" value="${v.deadline}">`)}${fld('Tägliche Aktion','optional',`<input class="in wide" id="mqDaily" maxlength="80" value="${esc(v.daily)}" placeholder="z. B. 30 min Mathe">`)}</div>
+     ${fld('Schritte','einer pro Zeile, du kannst später mehr hinzufügen',`<textarea class="in" rows="6" id="mqSteps" placeholder="Themen-Liste machen&#10;Alte Klausur rechnen&#10;Fehler mit Lehrer besprechen">${esc(v.steps.map(s=>s.t).join('\n'))}</textarea>`)}
+     <button class="btn accent big wide">${m?'Speichern':'Main Quest starten'}</button></form>
+     ${m?'':'<p class="hint">Du hast immer nur eine Main Quest. So bleibt der Fokus klar. Kleinere Sachen gehören in die Side Quests.</p>'}`}},
+ sideDone:{t:'Erledigte Side Quests',f(){const l=S.side.filter(q=>q.done).sort((a,b)=>b.doneAt.localeCompare(a.doneAt));return l.length?l.map(q=>`<div class="sq done"><button class="tk" data-sq="done" data-qid="${q.id}" aria-label="wieder öffnen">✓</button><span class="tt">${esc(q.t)}<small>${q.doneAt?dShort(q.doneAt):''}</small></span><span class="qx">+${SIDE_XP[q.size]}</span><button class="x" data-sq="del" data-qid="${q.id}" aria-label="löschen">×</button></div>`).join(''):'<p class="hint">Noch keine erledigt.</p>'}},
+ mainsDone:{t:'Abgeschlossene Main Quests',f(){const l=S.mains.filter(m=>m.status!=='active');return l.length?l.map(m=>`<div class="jr"><span class="lab">${m.status==='done'?'Geschafft · '+dShort(m.doneAt):'Aufgegeben'}</span><p><b>${esc(m.title)}</b></p><small>${m.steps.filter(s=>s.done).length}/${m.steps.length} Schritte${m.why?' · '+esc(m.why):''}</small></div>`).join(''):'<p class="hint">Hier landen deine geschafften Main Quests.</p>'}}
+};
 function renderSheet(top){const el=$('#sheet');const y=el.scrollTop;const k=cur,d=get(k);let h='';
   if(SHEET.kind==='cat'){const c=CATS.find(x=>x.id===SHEET.id);const x=scores(k).c[c.id];
     h=`<div class="shh"><span class="cd" style="background:${c.col}"></span><b>${c.name}</b><span class="shs" style="color:${x.has?zone(x.score):'var(--faint)'}">${x.has?x.score:'–'}</span><button class="x" data-act="sheet-close" aria-label="Schließen">×</button></div><div class="shb">${EDIT[c.id](d,k,x)}</div>`}
+  else if(SHEET.kind==='page'){const P=PAGES[SHEET.id];h=`<div class="shh"><span></span><b>${P.t}</b><span></span><button class="x" data-act="sheet-close" aria-label="Schließen">×</button></div><div class="shb">${P.f()}</div>`}
   else if(SHEET.kind==='ci'){const C=CI[SHEET.type];const i=SHEET.step;const st=C.steps[i];
     h=`<div class="shh"><span></span><b>${C.name}</b><span class="shs">${i+1}/${C.steps.length}</span><button class="x" data-act="sheet-close" aria-label="Schließen">×</button></div><div class="cidots">${C.steps.map((_,j)=>`<i class="${j<=i?'on':''}"></i>`).join('')}</div>
       <h3 class="cit">${st.t}</h3><div class="shb">${st.f(d,k)}</div>
@@ -1958,33 +2070,38 @@ function ftTick(){if(!FT)return;if(!FT.paused&&!document.hidden){FT.seen=Date.no
   const el=$('#ftTime');if(el)el.textContent=ftClock();const p=$('#ftProg');if(p&&FT.plan)p.style.width=Math.min(100,ftElapsed()/(FT.plan*60)*100)+'%';
   const ch=$('#ftChip');if(ch){ch.hidden=false;ch.textContent=(FT.type==='pause'?'☕ ':'◷ ')+ftClock()}
   if(!FT.paused&&FT.plan&&ftElapsed()>=FT.plan*60&&$('#modal').hidden)ftFinish()}
-function renderFocus(){const d=get(today());const f=d.focus;const fm=sum(f.map(x=>x.min));
+function renderFocus(){const t=today(),d=get(t);const f=d.focus;const fm=sum(f.map(x=>x.min));const plan=workoutPlan(t);const done=Object.keys(d.workout).length;
   let h=`<div class="ftbox">`;
   if(FT){h+=`<span class="lab">${FTYPES[FT.type]}${FT.plan?' · '+FT.plan+' min':' · freie Zeit'}${FT.paused?' · pausiert':''}</span><div class="fttime${FT.type==='pause'?' brk':''}" id="ftTime">${ftClock()}</div>${FT.plan?`<div class="pb"><i id="ftProg" style="width:${Math.min(100,ftElapsed()/(FT.plan*60)*100)}%"></i></div>`:''}
     <p class="hint">${FT.type==='pause'?'Aufstehen, Wasser trinken, aus dem Fenster schauen. Nicht aufs Handy.':'Handy weglegen. Wenn du die App verlässt, frage ich danach, ob du am Handy warst.'}${FT.ints?` · ${FT.ints}× unterbrochen`:''}</p>
     <div class="row c">${FT.type==='pause'?'<button class="btn solid big" data-act="ft-stop">Pause beenden</button>':`<button class="btn solid big" data-act="ft-pause">${FT.paused?'Weiter':'Pause'}</button><button class="btn big" data-act="ft-stop">Beenden & speichern</button>`}</div>${FT.type==='pause'?'':'<button class="lnk" data-act="ft-cancel">Verwerfen</button>'}`}
-  else{h+=`<span class="lab">Fokus-Timer</span><div class="fttime idle">${ftPlan?pad2(ftPlan)+':00':'∞'}</div>
+  else{h+=`<div class="fttime idle">${ftPlan?pad2(ftPlan)+':00':'∞'}</div>
     <div class="seg wide">${['lernen','deep','lesen'].map(t=>`<button type="button" data-ftype="${t}" aria-pressed="${ftType===t}">${FTYPES[t]}</button>`).join('')}</div>
     <div class="seg wide">${[25,50,90,0].map(m=>`<button type="button" data-fdur="${m}" aria-pressed="${ftPlan===m}">${m?m+' min':'Frei'}</button>`).join('')}</div>
     <button class="btn accent big wide" data-act="ft-start">Start</button><button class="tog sm" data-act="awake" aria-pressed="${S.keepAwake}">Bildschirm anlassen</button>`}
-  h+=`</div>`;
-  h+=sec('Heute',`<div class="kvs">${kv('Deep Work',deepScore(d))}${kv('Fokuszeit',fmtDur(fm))}${kv('Handyfrei',fm?Math.round(sum(f.map(x=>x.pf?x.min:0))/fm*100)+' %':'–')}</div>
-    <div class="acts">${f.length?f.map((x,i)=>`<div class="act"><span class="ty">${FTYPES[x.t]}</span><span class="nm">${new Date(x.at||Date.now()).toTimeString().slice(0,5)}${x.pf?' · handyfrei':' · mit Handy'}</span><span class="num">${x.min} min</span><button class="x" data-fdel="${i}" aria-label="Session löschen">×</button></div>`).join(''):'<div class="hint">Noch keine Session heute. 25 Minuten sind ein guter Anfang.</div>'}</div>
-    ${fold('Session ohne Timer nachtragen',`<form class="addrow" id="fmanForm"><select class="in" id="fmType" aria-label="Art">${['lernen','deep','lesen'].map(t=>`<option value="${t}">${FTYPES[t]}</option>`).join('')}</select><input class="in sm" id="fmMin" inputmode="numeric" placeholder="Min" aria-label="Minuten"><label class="ck"><input type="checkbox" id="fmPf" checked> ohne Handy</label><button class="btn solid" aria-label="Nachtragen">+</button></form>`)}`);
-  h+=`<p class="hint">Deep-Work-Score: Fokuszeit bis 2 h, Anteil ohne Handy und längste Session. Unterbrechungen ziehen ab. Nach jeder Session kannst du eine 5-Minuten-Pause starten.</p>`;
+  h+=`</div><div class="kvs">${kv('Deep Work',deepScore(d))}${kv('Fokus heute',fmtDur(fm))}${kv('Handyfrei',fm?Math.round(sum(f.map(x=>x.pf?x.min:0))/fm*100)+' %':'–')}</div>`;
+  if(f.length)h+=`<div class="acts">${f.map((x,i)=>`<div class="act"><span class="ty">${FTYPES[x.t]}</span><span class="nm">${new Date(x.at||Date.now()).toTimeString().slice(0,5)}${x.pf?' · handyfrei':' · mit Handy'}</span><span class="num">${x.min} min</span><button class="x" data-fdel="${i}" aria-label="Session löschen">×</button></div>`).join('')}</div>`;
+  h+=sec('Brain-Workout',`<div class="workout">${plan.map((s,i)=>`<button class="wrow${d.workout[i]!=null?' done':''}" data-g="${s.id}" data-slot="${i}"><span class="wl">${s.lab}</span><span class="wn">${GAME[s.id].name}</span><span class="wx">${d.workout[i]!=null?'✓':s.dur}</span></button>`).join('')}</div>
+    ${done<5?`<button class="btn accent wide" data-act="workout">${done?'Weiter mit Spiel '+(plan.findIndex((s,j)=>d.workout[j]==null)+1)+'/5':'Workout starten · 10 Min'}</button>`:'<div class="note good">Workout für heute geschafft.</div>'}`,`<span class="val">${done}/5</span>`);
+  h+=`<div class="menu">${menuRow('games','Alle Brain-Spiele',GAMES.length)}${menuRow('fman','Session ohne Timer nachtragen')}</div>`;
   $('#v-focus').innerHTML=h}
 document.addEventListener('visibilitychange',()=>{if(document.hidden){if(FT&&!FT.paused){FT.seen=Date.now();ftSave()}}else{if(FT){ftCheckReturn();if(S.keepAwake&&FT&&!FT.paused)wakeOn()}}});
 
-/* ---------- Spiele ---------- */
-function renderGames(){const t=today(),d=get(t),rec=records(),plan=workoutPlan(t);const done=Object.keys(d.workout).length;
-  let h=sec('Brain-Workout',`<div class="workout">${plan.map((s,i)=>`<button class="wrow${d.workout[i]!=null?' done':''}" data-g="${s.id}" data-slot="${i}"><span class="wl">${s.lab}</span><span class="wn">${GAME[s.id].name}</span><span class="wx">${d.workout[i]!=null?'✓':s.dur}</span></button>`).join('')}</div>
-    ${done<5?`<button class="btn accent big wide" data-act="workout">${done?'Weiter mit Spiel '+(plan.findIndex((s,j)=>d.workout[j]==null)+1)+'/5':'Workout starten · 10 Min'}</button>`:'<div class="note good">Workout für heute geschafft.</div>'}`,`<span class="val">${done}/5</span>`);
-  h+=fold('Alle Spiele · '+GAMES.length,`<div class="diffrow"><span class="lab">Schwierigkeit</span><div class="seg2">${[['easy','Leicht'],['normal','Normal'],['hard','Schwer'],['adaptive','Adaptiv']].map(([id,n])=>`<button data-diff="${id}" aria-pressed="${S.diff===id}">${n}</button>`).join('')}</div></div>
-   <div class="filters">${GCATS.map(([id,n])=>`<button data-f="${id}" aria-pressed="${gFilter===id}">${n}</button>`).join('')}</div>
-   <div class="glist">${GAMES.filter(g=>gFilter==='all'||g.cat===gFilter).map(g=>{const gv=d.games[g.id];return`<button class="gi2${gv?' done':''}" data-g="${g.id}"><span class="gn"><b>${g.name}</b><small>${GCATNAME[g.cat]} · ${DIFFN[diffLevel(g.id)]}</small></span><span class="gv"><b>${gv?g.fmt(gv.v):'–'}</b><small>Rekord ${rec[g.id]!=null?g.fmt(rec[g.id]):'–'}</small></span></button>`}).join('')}</div>`,true);
-  h+=`<p class="hint">Brain-Spiele zählen im Bereich Lernen mit. Pro Tag gibt es bis zu 1.500 XP aus Spielen.</p>`;
-  $('#v-games').innerHTML=h}
+/* ---------- Quests ---------- */
+function renderQuests(){const t=today(),d=get(t);const qs=dailyQuests(t);const qd=qs.filter(q=>q.f(d)).length;const wq=weeklyQuests(weekStartKey());const dt=detoxState(S.detox);
+  const open=S.side.filter(q=>!q.done);const doneN=S.side.length-open.length;const m=activeMain();const past=S.mains.filter(x=>x.status!=='active').length;
+  let h='';
+  h+=m?mainCard(false):`<div class="mq full empty"><span class="lab">Main Quest</span><b class="mqt">Was ist dein großes Ziel?</b><p class="why">Eine Main Quest ist ein Ziel für die nächsten Wochen: eine Klausur, ein Lauf-Ziel, ein Projekt. Du zerlegst es in Schritte und hakst sie ab.</p><button class="btn accent big" data-page="main">Main Quest festlegen</button></div>`;
+  h+=sec('Side Quests',`${open.length?open.map(q=>{const dl=daysLeft(q.deadline);return`<div class="sq"><button class="tk" data-sq="done" data-qid="${q.id}" aria-label="erledigt"></button><span class="tt">${esc(q.t)}${q.deadline?`<small class="${dl!=null&&dl<0?'bad':''}">${dl<0?'überfällig':dl===0?'heute':'bis '+dShort(q.deadline)}</small>`:''}</span><button class="sz s${q.size}" data-sq="size" data-qid="${q.id}" aria-label="Größe ändern">${SIDE_N[q.size]} · ${SIDE_XP[q.size]}</button><button class="x" data-sq="del" data-qid="${q.id}" aria-label="löschen">×</button></div>`}).join(''):'<p class="hint">Noch keine offenen Side Quests. Trag eine ein oder nimm einen Vorschlag.</p>'}
+    <form class="addrow" id="sqForm"><input class="in wide" id="sqIn" maxlength="100" placeholder="Neue Side Quest …" enterkeyhint="done"><select class="in" id="sqSize" aria-label="Größe"><option value="1">S · 100</option><option value="2">M · 250</option><option value="3">L · 500</option></select><button class="btn solid" aria-label="Side Quest hinzufügen">+</button></form>
+    <div class="sub2"><span class="lab">Vorschläge</span><button class="lnk" data-act="sugg">Andere zeigen ↻</button></div>
+    ${sideSuggestions().map(([s,z],i)=>`<button class="sugg" data-sugg="${i}"><span>${esc(s)}</span><small>${SIDE_N[z]} · ${SIDE_XP[z]} XP</small><i>+</i></button>`).join('')}`,`<span class="val">${open.length} offen</span>`);
+  h+=sec('Daily Quests',qs.map(q=>{const ok=q.f(d);return`<div class="quest${ok?' ok':''}"><span class="qc">${ok?'✓':''}</span><span class="qt">${esc(q.t())}</span><span class="qx">+100</span></div>`}).join('')+`<p class="hint">Neue Daily Quests jeden Tag. Alle drei: +150 Bonus.</p>`,`<span class="val">${qd}/3</span>`);
+  h+=sec('Wochenquests',wq.map(x=>`<div class="quest${x.done?' ok':''}"><span class="qc">${x.done?'✓':''}</span><span class="qt">${esc(x.q.t())}<span class="qp">${bar(x.cur/x.q.goal)}<small>${nf(x.cur)} / ${nf(x.q.goal)}</small></span></span><span class="qx">+500</span></div>`).join('')+(dt?`<div class="quest"><span class="qc"></span><span class="qt">${DETOX[S.detox.type].t}<span class="qp">${bar(dt.st.filter(s=>s==='ok').length/7)}<small>${dt.st.filter(s=>s==='ok').length} / 7 Tage</small></span></span><span class="qx">+1.000</span></div>`:''),`<span class="val">KW ${isoWeek()[1]}</span>`);
+  h+=`<div class="menu">${menuRow('sideDone','Erledigte Side Quests',doneN)}${menuRow('mainsDone','Abgeschlossene Main Quests',past)}</div>`;
+  $('#v-quests').innerHTML=h}
 
+/* ---------- Verlauf ---------- */
 /* ---------- Verlauf ---------- */
 const fillOf=s=>s==null?null:s>=90?'#B8E6C4':s>=75?'#7FB08E':s>=60?'#56705E':s>=40?'#8A6326':'#7A3B33';
 function barsSVG(vals,labels,o){const W=320,H=128,b=100,top=16;const max=Math.max(o.goal||0,...vals.map(v=>v||0),1)*1.12;const sl=W/vals.length;let s=`<svg viewBox="0 0 ${W} ${H}" class="chart" role="img" aria-label="${esc(o.label)}">`;
@@ -2016,30 +2133,23 @@ function chartHTML(){const t=today();const ks=lastN(t,7);const lab=ks.map(k=>WD[
   if(chartSel==='screen'){const s=D.map(d=>d.digital.screen);const sv=s.filter(x=>x!=null);const a30=avgBack(t,y=>y.digital.screen,30);return barsSVG(s,lab,{label:'Bildschirmzeit',goal:g.screen,goalLabel:'Limit',fmt:v=>fmtMin(v),colorFn:v=>v>g.screen?'var(--bad)':'var(--dim)'})+`<div class="kvs">${kv('Ø 7 Tage',sv.length?fmtMin(avg(sv))+' h':'–')}${kv('Ø 30 Tage',a30!=null?fmtMin(a30)+' h':'–')}${kv('Shorts',sum(D.map(d=>d.digital.shorts||0))+' min')}</div>`}
   const e=D.map(d=>d.feel.energy),dy=D.map(d=>d.feel.day);const f1=a=>a.filter(x=>x);const fa=a=>f1(a).length?avg(f1(a)).toFixed(1).replace('.',','):'–';
   return barsSVG(dy,lab,{label:'Tagesbewertung',fmt:v=>v,color:'#F0A73C'})+`<div class="kvs">${kv('Ø Tag',fa(dy),'von 5')}${kv('Ø Energie',fa(e),'von 5')}${kv('Ø Stimmung',fa(D.map(d=>d.feel.mood)),'morgens')}</div>`}
-function renderStats(){const wc=weekCompare();const ins=insights();const t=today();
+function renderStats(){const wc=weekCompare();const ins=insights();
   const a=avg(wc.a.total),b=avg(wc.b.total);const arrow=(x,y)=>x==null||y==null?'':x>=y?`<i class="up">▲ ${Math.round(x-y)}</i>`:`<i class="dn">▼ ${Math.round(y-x)}</i>`;
   let h=sec('Diese Woche',`<div class="wk"><div class="wka"><span class="lab">Ø Life Score</span><b style="color:${zone(a==null?null:Math.round(a))}">${a==null?'–':Math.round(a)}</b>${arrow(a,b)}<small>${b==null?'Vorwoche: keine Daten':'Vorwoche '+Math.round(b)}</small></div>
     <div class="wkc">${CATS.map(c=>{const x=avg(wc.a.cats[c.id]),y=avg(wc.b.cats[c.id]);return`<div class="wkr"><span class="cd" style="background:${c.col}"></span><span>${c.name}</span><b>${x==null?'–':Math.round(x)}</b>${arrow(x,y)}</div>`}).join('')}</div></div>`,`<span class="val">KW ${isoWeek()[1]}</span>`);
-  h+=sec('Was dir gut tut',ins.few?`<p class="hint">Ab 7 erfassten Tagen siehst du hier Muster aus deinen Daten (${ins.n}/7). Mach dafür am besten jeden Abend den Check-in.</p>`:ins.list.length?ins.list.map(x=>`<div class="ins">${x.t}</div>`).join('')+'<p class="hint">Zusammenhänge aus deinen eigenen Daten. Kein Beweis, aber ein guter Hinweis.</p>':'<p class="hint">Noch keine klaren Muster. Je mehr Tage, desto genauer.</p>');
+  h+=sec('Was dir gut tut',ins.few?`<p class="hint">Ab 7 erfassten Tagen siehst du hier Muster aus deinen Daten (${ins.n}/7). Mach dafür am besten jeden Abend den Check-in.</p>`:ins.list.length?ins.list.map(x=>`<div class="ins">${x.t}</div>`).join(''):'<p class="hint">Noch keine klaren Muster. Je mehr Tage, desto genauer.</p>');
   h+=sec('Letzte 7 Tage',`<div class="filters">${Object.keys(CHARTS).map(id=>`<button data-chart="${id}" aria-pressed="${chartSel===id}">${CHARTS[id]}</button>`).join('')}</div>${chartHTML()}`);
   h+=sec('Kalender',calHTML());
-  const jr=lastN(t,30).reverse().map(k=>[k,get(k).journal]).filter(([,j])=>j.line||j.grat);
-  h+=fold('Tagebuch · '+jr.length,jr.length?jr.map(([k,j])=>`<div class="jr"><span class="lab">${dayLabel(k)}</span>${j.line?`<p>${esc(j.line)}</p>`:''}${j.grat?`<small>Dankbar für: ${esc(j.grat)}</small>`:''}</div>`).join(''):'<p class="hint">Im Abend-Check-in schreibst du einen Satz zum Tag. Die landen hier.</p>');
-  h+=fold('Persönliche Rekorde',`<div class="pbs">${recordsList()}</div>`);
+  const jn=lastN(today(),60).filter(k=>{const j=get(k).journal;return j.line||j.grat}).length;
+  h+=`<div class="menu">${menuRow('journal','Tagebuch',jn)}${menuRow('records','Persönliche Rekorde')}</div>`;
   $('#v-stats').innerHTML=h}
 
 /* ---------- Profil ---------- */
-function renderProfile(){const xp=totalXP(),L=lvlOf(xp),a=xpAt(L),b=xpAt(Math.min(100,L+1));const wq=weeklyQuests(weekStartKey());const as=achState();const dt=detoxState(S.detox);const okA=as.filter(x=>x.ok);
+function renderProfile(){const xp=totalXP(),L=lvlOf(xp),a=xpAt(L),b=xpAt(Math.min(100,L+1));const as=achState();const okA=as.filter(x=>x.ok);
   let h=`<div class="lvbox"><span class="lab">Level</span><div class="lvbig">${L}<small>/ 100 · ${titleOf(L)}</small></div>${bar(L>=100?1:(xp-a)/(b-a))}<div class="hint">${L>=100?'Maximal-Level erreicht.':nf(b-xp)+' XP bis Level '+(L+1)} · ${nf(xp)} XP gesamt</div></div>`;
   h+=`<div class="streaks">${STREAKS.map(s=>`<div class="stk"><b>${streakOf(s.f)}</b><span>${s.name}</span><small>Rekord ${bestRun(s.f)}</small></div>`).join('')}</div>`;
-  h+=sec('Wochenquests',wq.map(x=>`<div class="quest${x.done?' ok':''}"><span class="qc">${x.done?'✓':''}</span><span class="qt">${esc(x.q.t())}<span class="qp">${bar(x.cur/x.q.goal)}<small>${nf(x.cur)} / ${nf(x.q.goal)}</small></span></span><span class="qx">+500</span></div>`).join('')+(dt?`<div class="quest"><span class="qc"></span><span class="qt">${DETOX[S.detox.type].t}<span class="qp">${bar(dt.st.filter(s=>s==='ok').length/7)}<small>${dt.st.filter(s=>s==='ok').length} / 7 Tage</small></span></span><span class="qx">+1.000</span></div>`:''),`<span class="val">KW ${isoWeek()[1]}</span>`);
-  h+=fold(`Achievements · ${okA.length}/${as.length}`,`<div class="ach">${as.map(x=>`<div class="ac${x.ok?' ok':''}"><b>${esc(x.m)}</b><span class="an">${esc(x.n)}</span><span class="ad">${esc(x.d)}</span>${!x.ok&&x.goal>1?bar(x.cur/x.goal):''}</div>`).join('')}</div>`);
-  const g=S.goals;const gi=(key,label,val,unit,step,mult)=>`<label class="gl"><span>${label}</span><span class="gi"><input class="in" type="number" inputmode="decimal" step="${step}" min="0" data-goal="${key}" data-mult="${mult}" value="${+(val/mult).toFixed(2)}"><small>${unit}</small></span></label>`;
-  h+=fold('Ziele',`<div class="goals">${gi('study','Lernzeit pro Tag',g.study,'min',5,1)}${gi('studyWeek','Lernzeit pro Woche',g.studyWeek,'h',.5,60)}${gi('sleep','Schlafziel',g.sleep,'h',.25,60)}${gi('steps','Schritte pro Tag',g.steps,'Schritte',500,1)}${gi('sport','Sportzeit pro Tag',g.sport,'min',5,1)}${gi('screen','Bildschirm-Limit',g.screen,'h',.25,60)}</div><p class="hint">Für Jugendliche werden 8–10 Stunden Schlaf empfohlen.</p>`);
-  h+=fold('Routinen',`<label class="gl col"><span>Morgenroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="morning">${esc(S.morning.join('\n'))}</textarea></label><label class="gl col"><span>Abendroutine · ein Punkt pro Zeile</span><textarea class="in" rows="5" data-routine="evening">${esc(S.evening.join('\n'))}</textarea></label>`);
-  h+=fold('Daten & Import',`<p class="hint">Alles bleibt auf diesem iPhone. Mach ab und zu ein Backup.</p><div class="row"><button class="btn solid" data-act="bk-save">Backup speichern</button><button class="btn" data-act="bk-load">Backup laden</button><button class="btn" data-act="import">Strava / Garmin</button></div><div class="hint" id="impRes">${Object.keys(days).filter(k=>scores(k).n).length} Tage gespeichert.</div>
-    <ul class="hint"><li><b>Strava:</b> Aktivität im Browser → „⋯“ → GPX exportieren, oder das Konto-Archiv als ZIP.</li><li><b>Garmin Connect:</b> Aktivität → Zahnrad → Original exportieren (FIT), Schlaf-CSV oder der komplette Datenexport als ZIP.</li></ul>`);
-  h+=fold('So wird gerechnet',`<ul class="hint"><li>Jeder Bereich hat einen Score von 0–100. Der Life Score ist der Durchschnitt aller erfassten Bereiche (Lernen 22 %, Schlaf 22 %, Sport 20 %, Alltag 20 %, Digital 16 %).</li><li>Leere Bereiche zählen nicht mit. Ab 3 erfassten Bereichen ist der Score aussagekräftig.</li><li>Stimmung, Energie und Tagebuch zählen nicht in den Score. Sie fließen nur in „Was dir gut tut“ ein.</li><li>XP gibt es für gute Entscheidungen, Quests, Check-ins und den Tagesabschluss. Level 100 ist ungefähr ein Jahr konsequentes Dranbleiben.</li></ul>`);
+  h+=`<div class="achrow">${okA.slice(-5).reverse().map(x=>`<span class="acm" title="${esc(x.n)}">${esc(x.m)}</span>`).join('')||'<span class="hint">Noch keine Achievements</span>'}</div>`;
+  h+=`<div class="menu">${menuRow('ach','Achievements',okA.length+'/'+as.length)}${menuRow('goals','Ziele')}${menuRow('routines','Routinen')}${menuRow('data','Daten & Backup')}${menuRow('calc','So wird gerechnet')}</div>`;
   $('#v-prof').innerHTML=h}
 
 /* ================= Eingaben ================= */
@@ -2059,12 +2169,32 @@ document.addEventListener('change',e=>{const el=e.target;
   else if(el.matches('[data-routine]')){const items=el.value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,12);S[el.dataset.routine]=items.map(x=>x.slice(0,60));sSave();toast('Routine gespeichert.')}
   else if(el.id==='file'){const f=[...el.files];el.value='';if(f.length)importFiles(f)}});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.matches('input[data-path],input[data-goal]')){e.preventDefault();e.target.blur()}});
-document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;const d=ensure(cur);
+document.addEventListener('submit',e=>{e.preventDefault();const f=e.target;
+  if(f.id==='sqForm'){const v=$('#sqIn').value.trim();if(!v)return;S.side.push({id:uid(),t:v.slice(0,100),size:+$('#sqSize').value||1,deadline:'',done:false,doneAt:'',created:today()});qCommit();const i=$('#sqIn');if(i)i.focus();return}
+  if(f.id==='mqStepForm'){const m=activeMain();const v=$('#mqStepIn').value.trim();if(!m||!v)return;m.steps.push({id:uid(),t:v.slice(0,100),done:false,doneAt:''});qCommit();const i=$('#mqStepIn');if(i)i.focus();return}
+  if(f.id==='mqForm'){const title=$('#mqTitle').value.trim();if(!title){toast('Gib deinem Ziel einen Namen.');return}const lines=$('#mqSteps').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,40);
+    let m=activeMain();const isNew=!m;if(!m){m={id:uid(),title:'',why:'',deadline:'',daily:'',steps:[],log:{},status:'active',created:today(),doneAt:''};S.mains.push(m)}
+    m.title=title.slice(0,100);m.why=$('#mqWhy').value.trim().slice(0,200);m.deadline=/^\d{4}-\d{2}-\d{2}$/.test($('#mqDl').value)?$('#mqDl').value:'';m.daily=$('#mqDaily').value.trim().slice(0,80);
+    m.steps=lines.map(t=>m.steps.find(s=>s.t===t)||{id:uid(),t:t.slice(0,100),done:false,doneAt:''});
+    closeSheet();qCommit();if(tab!=='quests'&&isNew)setTab('quests');toast(isNew?'Main Quest gestartet. Los geht’s.':'Main Quest gespeichert.');return}
+  const d=ensure(cur);
   if(f.id==='taskForm'){const v=$('#taskIn').value.trim();if(!v)return;d.life.tasks.push({id:'t'+Date.now().toString(36),t:v.slice(0,100),p:2,top:d.life.tasks.filter(t=>t.top).length<3&&d.life.tasks.length<3,done:false});commit();const i=$('#taskIn');if(i)i.focus()}
   else if(f.id==='actForm'){const m=parseNumIn($('#aMin').value);if(!m){toast('Trag die Minuten ein.');return}const km=parseFloat(String($('#aKm').value).replace(',','.'))||0;const type=$('#aType').value;
     d.acts.push({id:'man|'+Date.now(),type,name:type==='Workout'?'Krafttraining':type,min:clamp(m,1,600),km:clamp(km,0,500),src:'manuell'});d.sport.rest=false;commit();toast((type==='Workout'?'Krafttraining':type)+' eingetragen.')}
   else if(f.id==='fmanForm'){const m=parseNumIn($('#fmMin').value);if(!m){toast('Trag die Minuten ein.');return}const t=$('#fmType').value;const k=today();const dd=ensure(k);dd.focus.push({t,min:clamp(m,1,600),pf:$('#fmPf').checked,int:0,at:Date.now()});if(t==='lernen')dd.brain.study+=m;if(t==='lesen')dd.brain.read+=m;commit(k);toast('Session nachgetragen.')}});
+function qCommit(){const k=today();ensure(k);sSave();save(k);render();checkAch()}
+function mainAction(a,sid){const m=activeMain();if(!m)return;const t=today();
+  if(a==='step'){const st=m.steps.find(x=>x.id===sid);if(!st)return;st.done=!st.done;st.doneAt=st.done?t:'';qCommit();if(st.done){toast('Schritt geschafft · +'+MAIN_STEP_XP+' XP');const p=mainProgress(m);if(p.n&&p.d===p.n)openSheet(`<span class="lab">Alle Schritte erledigt</span><div class="tn">${esc(m.title)}</div><p class="hint">Bereit, die Main Quest abzuschließen?</p><div class="row"><button class="btn accent big" data-mq="complete">Abschließen · +${nf(MAIN_DONE_XP)} XP</button><button class="btn" data-act="sheet-close">Noch nicht</button></div>`)}}
+  else if(a==='delstep'){m.steps=m.steps.filter(x=>x.id!==sid);qCommit()}
+  else if(a==='daily'){if(m.log[t])delete m.log[t];else m.log[t]=true;qCommit();if(m.log[t])toast('Tägliche Aktion · +'+MAIN_DAILY_XP+' XP')}
+  else if(a==='complete'){m.status='done';m.doneAt=t;closeSheet();qCommit();openSheet(`<span class="lab">Main Quest geschafft</span><div class="bignum" style="color:var(--good);font-size:72px">+${nf(MAIN_DONE_XP)}</div><div class="tn">${esc(m.title)}</div><p class="hint">Stark. Gönn dir kurz was, dann setz dir die nächste Main Quest.</p><div class="row"><button class="btn accent" data-page="main">Nächste Main Quest</button><button class="btn" data-act="sheet-close">Später</button></div>`)}
+  else if(a==='drop'){if(!dropArmed){dropArmed=true;render();setTimeout(()=>{dropArmed=false;render()},3000);return}dropArmed=false;m.status='dropped';qCommit();toast('Main Quest beendet.')}}
 document.addEventListener('click',e=>{const T=e.target;let el;
+  if((el=T.closest('[data-mq]'))){mainAction(el.dataset.mq,el.dataset.sid);return}
+  if((el=T.closest('[data-sq]'))){const q=S.side.find(x=>x.id===el.dataset.qid);if(!q)return;const a=el.dataset.sq;
+    if(a==='done'){q.done=!q.done;q.doneAt=q.done?today():'';if(q.done)toast('Side Quest erledigt · +'+SIDE_XP[q.size]+' XP')}else if(a==='size')q.size=q.size%3+1;else if(a==='del')S.side=S.side.filter(x=>x!==q);qCommit();return}
+  if((el=T.closest('[data-sugg]'))){const sg=sideSuggestions()[+el.dataset.sugg];if(!sg)return;S.side.push({id:uid(),t:sg[0],size:sg[1],deadline:'',done:false,doneAt:'',created:today()});qCommit();toast('Side Quest angenommen.');return}
+  if((el=T.closest('[data-page]'))){openPage(el.dataset.page);return}
   if((el=T.closest('#modal'))&&T===el){if(SHEET&&SHEET.kind==='ci')return;closeSheet();render();return}
   if((el=T.closest('[data-step]'))){const p=el.dataset.step;const d=ensure(cur);const v=getP(d,p);const nv=clamp((v||0)+(+el.dataset.d),0,LIMITS[p]||100000);setP(d,p,nv);commit();return}
   if((el=T.closest('[data-tog]'))){const p=el.dataset.tog;const d=ensure(cur);const val=el.dataset.v==='1';setP(d,p,getP(d,p)===val?null:val);commit();return}
@@ -2082,7 +2212,7 @@ document.addEventListener('click',e=>{const T=e.target;let el;
   if((el=T.closest('[data-cal]'))){cur=el.dataset.cal;setTab('today');return}
   if((el=T.closest('[data-diff]'))){S.diff=el.dataset.diff;sSave();render();return}
   if((el=T.closest('[data-f]'))){gFilter=el.dataset.f;render();return}
-  if((el=T.closest('[data-g]'))){const s=el.dataset.slot;if(s!=null&&get(today()).workout[s]==null){const p=workoutPlan(today())[+s];openGame(p.id,{slot:+s,sec:p.sec})}else openGame(el.dataset.g);return}
+  if((el=T.closest('[data-g]'))){closeSheet();const s=el.dataset.slot;if(s!=null&&get(today()).workout[s]==null){const p=workoutPlan(today())[+s];openGame(p.id,{slot:+s,sec:p.sec})}else openGame(el.dataset.g);return}
   if((el=T.closest('[data-tab]'))){closeSheet();setTab(el.dataset.tab);return}
   if(!(el=T.closest('[data-act]')))return;const a=el.dataset.act;const t=today();
   if(a==='prev'){cur=addDays(cur,-1);render()}
@@ -2113,6 +2243,7 @@ document.addEventListener('click',e=>{const T=e.target;let el;
   else if(a==='mnext'){if(monthOff<0){monthOff++;render()}}
   else if(a==='import'||a==='bk-load')$('#file').click();
   else if(a==='bk-save')saveBackup();
+  else if(a==='sugg'){S.sugOff++;sSave();render()}
 });
 $('#stQuit').addEventListener('click',closeStage);
 
